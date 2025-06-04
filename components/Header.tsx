@@ -30,11 +30,11 @@ export default function Header({ translations, lang }: HeaderProps) {
           {/* Logo */}
           <Link href={`/?lang=${lang}`} className="flex items-center space-x-2">
             <Image
-              src="/masterclean-logo-transparent.png"
+              src="/masterclean-logo-final.png"
               alt="MasterClean"
-              width={180}
-              height={45}
-              className="h-10 w-auto object-contain"
+              width={200}
+              height={50}
+              className="h-12 w-auto object-contain"
               priority
             />
           </Link>

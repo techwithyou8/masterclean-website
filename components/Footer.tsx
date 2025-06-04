@@ -17,11 +17,11 @@ export default function Footer({ translations, lang }: FooterProps) {
           <div className="space-y-4">
             <div className="flex items-center">
               <Image
-                src="/masterclean-logo-transparent.png"
+                src="/masterclean-logo-final.png"
                 alt="MasterClean"
-                width={140}
-                height={35}
-                className="h-8 w-auto object-contain brightness-0 invert"
+                width={160}
+                height={40}
+                className="h-10 w-auto object-contain brightness-0 invert"
               />
             </div>
             <p className="text-gray-400">{translations.footer.description}</p>
