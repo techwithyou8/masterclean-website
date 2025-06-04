@@ -3,9 +3,6 @@
   "outputDirectory": ".next",
   "framework": "nextjs",
   "regions": ["bru1"],
-  "env": {
-    "RESEND_API_KEY": "@resend_api_key"
-  },
   "headers": [
     {
       "source": "/(.*)",
