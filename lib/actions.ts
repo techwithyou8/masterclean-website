@@ -15,6 +15,32 @@ export async function submitContactForm(formData: FormData) {
 
   console.log("Form data received:", { name, email, phone: !!phone, message: !!message })
 
+  // Process uploaded files
+  const files: { name: string; content: string; type: string; size: number }[] = []
+  const fileEntries = Array.from(formData.entries()).filter(([key]) => key.startsWith("file_"))
+
+  for (const [key, value] of fileEntries) {
+    if (value instanceof File && value.size > 0) {
+      try {
+        const arrayBuffer = await value.arrayBuffer()
+        const base64Content = Buffer.from(arrayBuffer).toString("base64")
+
+        files.push({
+          name: value.name,
+          content: base64Content,
+          type: value.type,
+          size: value.size,
+        })
+
+        console.log(`File processed: ${value.name} (${value.size} bytes)`)
+      } catch (error) {
+        console.error(`Error processing file ${value.name}:`, error)
+      }
+    }
+  }
+
+  console.log(`Total files processed: ${files.length}`)
+
   // Basic validation
   if (!name || !email || !message) {
     console.log("Validation failed: missing required fields")
@@ -49,11 +75,43 @@ export async function submitContactForm(formData: FormData) {
   try {
     console.log("Attempting to send email via Resend...")
 
+    // Prepare attachments for Resend
+    const attachments = files.map((file) => ({
+      filename: file.name,
+      content: file.content,
+      type: file.type,
+      disposition: "attachment",
+    }))
+
+    // Create file list for email content
+    const fileListHtml =
+      files.length > 0
+        ? `
+      <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #374151; margin-top: 0;">📎 Bijgevoegde Bestanden (${files.length}):</h3>
+        <ul style="margin: 0; padding-left: 20px;">
+          ${files
+            .map(
+              (file) => `
+            <li style="margin: 5px 0;">
+              <strong>${file.name}</strong> 
+              <span style="color: #6b7280; font-size: 12px;">
+                (${file.type}, ${(file.size / 1024).toFixed(1)} KB)
+              </span>
+            </li>
+          `,
+            )
+            .join("")}
+        </ul>
+      </div>
+    `
+        : ""
+
     // Send email to MasterClean
     const emailResult = await resend.emails.send({
       from: "MasterClean <onboarding@resend.dev>", // Using Resend's default domain for now
       to: ["info@mastercleanservice.nl"],
-      subject: `Nieuwe contactaanvraag van ${name}`,
+      subject: `Nieuwe contactaanvraag van ${name}${files.length > 0 ? ` (${files.length} bijlage${files.length !== 1 ? "s" : ""})` : ""}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2563eb;">Nieuwe Contactaanvraag - MasterClean</h2>
@@ -70,6 +128,8 @@ export async function submitContactForm(formData: FormData) {
             <p style="white-space: pre-wrap;">${message}</p>
           </div>
           
+          ${fileListHtml}
+          
           <div style="background-color: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #92400e;">
               <strong>⚡ Actie vereist:</strong> Neem binnen 24 uur contact op met deze klant voor de beste service!
@@ -84,6 +144,7 @@ export async function submitContactForm(formData: FormData) {
           </p>
         </div>
       `,
+      attachments: attachments.length > 0 ? attachments : undefined,
     })
 
     console.log("✅ Email sent successfully:", emailResult)
@@ -105,9 +166,25 @@ export async function submitContactForm(formData: FormData) {
               <p style="white-space: pre-wrap;">${message}</p>
             </div>
             
+            ${
+              files.length > 0
+                ? `
+            <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #374151; margin-top: 0;">📎 Uw bijgevoegde bestanden:</h3>
+              <ul style="margin: 0; padding-left: 20px;">
+                ${files.map((file) => `<li style="margin: 5px 0;">${file.name}</li>`).join("")}
+              </ul>
+              <p style="color: #6b7280; font-size: 14px; margin-top: 10px;">
+                Wij hebben uw bestanden ontvangen en zullen deze bekijken bij het behandelen van uw aanvraag.
+              </p>
+            </div>
+            `
+                : ""
+            }
+            
             <div style="background-color: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">
               <p style="margin: 0; color: #92400e;">
-                <strong>🚀 Spoed?</strong> Bel ons direct op <a href="tel:+31850805636" style="color: #ea580c;">+31 (0)85 0805636</a>
+                <strong>🚀 Spoed?</strong> Bel ons direct op <a href="tel:+31850805636" style="color: #ea580c;">+31 (0)85 0805636</a> of WhatsApp <a href="https://wa.me/31657211993" style="color: #16a34a;">+31 6 57211993</a>
               </p>
             </div>
             
@@ -119,6 +196,7 @@ export async function submitContactForm(formData: FormData) {
             <div style="color: #6b7280; font-size: 14px;">
               <p><strong>MasterClean</strong><br>
               Telefoon: +31 (0)85 0805636<br>
+              WhatsApp: +31 6 57211993<br>
               Email: info@mastercleanservice.nl<br>
               Werkgebied: Zeeland & Noord-Holland</p>
             </div>
@@ -133,7 +211,7 @@ export async function submitContactForm(formData: FormData) {
 
     return {
       success: true,
-      message: `Bedankt ${name}! Uw bericht is ontvangen. We nemen binnen 24 uur contact met u op via ${email} of bel ons direct op +31 (0)85 0805636 voor directe hulp.`,
+      message: `Bedankt ${name}! Uw bericht${files.length > 0 ? ` met ${files.length} bijlage${files.length !== 1 ? "s" : ""}` : ""} is ontvangen. We nemen binnen 24 uur contact met u op via ${email} of bel ons direct op +31 (0)85 0805636 voor directe hulp.`,
     }
   } catch (error) {
     console.error("❌ Failed to send email:", error)
@@ -161,6 +239,232 @@ export async function submitContactForm(formData: FormData) {
     }
   } finally {
     console.log("=== CONTACT FORM SUBMISSION END ===")
+  }
+}
+
+export async function submitAppointmentForm(formData: FormData) {
+  console.log("=== APPOINTMENT FORM SUBMISSION START ===")
+
+  // Get form data
+  const name = formData.get("name") as string
+  const email = formData.get("email") as string
+  const phone = formData.get("phone") as string
+  const preferredDate = formData.get("preferredDate") as string
+  const preferredTime = formData.get("preferredTime") as string
+  const serviceType = formData.get("serviceType") as string
+  const address = formData.get("address") as string
+  const message = formData.get("message") as string
+
+  console.log("Appointment data received:", {
+    name,
+    email,
+    phone: !!phone,
+    preferredDate,
+    preferredTime,
+    serviceType,
+    address: !!address,
+    message: !!message,
+  })
+
+  // Basic validation
+  if (!name || !email || !phone || !preferredDate || !preferredTime || !serviceType) {
+    console.log("Validation failed: missing required fields")
+    return {
+      success: false,
+      error: "Alle verplichte velden moeten worden ingevuld",
+    }
+  }
+
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    console.log("Validation failed: invalid email format")
+    return {
+      success: false,
+      error: "Ongeldig emailadres",
+    }
+  }
+
+  // Date validation (not in the past)
+  const selectedDate = new Date(preferredDate)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  if (selectedDate < today) {
+    return {
+      success: false,
+      error: "De gewenste datum kan niet in het verleden liggen",
+    }
+  }
+
+  // Check if API key is available
+  if (!process.env.RESEND_API_KEY) {
+    console.error("❌ RESEND_API_KEY not found in environment variables")
+    return {
+      success: false,
+      error: "Email service niet geconfigureerd. Bel ons direct op +31 (0)85 0805636.",
+    }
+  }
+
+  try {
+    console.log("Attempting to send appointment email via Resend...")
+
+    // Format date and time for display
+    const formattedDate = new Date(preferredDate).toLocaleDateString("nl-NL", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+
+    const formattedTime = preferredTime
+
+    // Send email to MasterClean
+    const emailResult = await resend.emails.send({
+      from: "MasterClean <onboarding@resend.dev>",
+      to: ["info@mastercleanservice.nl"],
+      subject: `🗓️ Nieuwe Afspraakverzoek van ${name} - ${formattedDate}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #7c3aed;">🗓️ Nieuwe Afspraakverzoek - MasterClean</h2>
+          
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #374151; margin-top: 0;">Klantgegevens:</h3>
+            <p><strong>Naam:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Telefoon:</strong> ${phone}</p>
+            ${address ? `<p><strong>Adres:</strong> ${address}</p>` : ""}
+          </div>
+          
+          <div style="background-color: #faf5ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #7c3aed;">
+            <h3 style="color: #374151; margin-top: 0;">📅 Gewenste Afspraak:</h3>
+            <p><strong>Datum:</strong> ${formattedDate}</p>
+            <p><strong>Tijd:</strong> ${formattedTime}</p>
+            <p><strong>Dienst:</strong> ${serviceType}</p>
+          </div>
+          
+          ${
+            message
+              ? `
+          <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #374151; margin-top: 0;">💬 Aanvullende Informatie:</h3>
+            <p style="white-space: pre-wrap;">${message}</p>
+          </div>
+          `
+              : ""
+          }
+          
+          <div style="background-color: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #92400e;">
+              <strong>⚡ Actie vereist:</strong> Bevestig deze afspraak binnen 24 uur door contact op te nemen met de klant!
+            </p>
+          </div>
+          
+          <div style="background-color: #dcfce7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p style="margin: 0; color: #166534;">
+              <strong>📞 Snelle Actie:</strong><br>
+              Bel: <a href="tel:${phone}" style="color: #ea580c;">${phone}</a><br>
+              WhatsApp: <a href="https://wa.me/${phone.replace(/\D/g, "")}" style="color: #16a34a;">Stuur WhatsApp</a><br>
+              Email: <a href="mailto:${email}" style="color: #2563eb;">${email}</a>
+            </p>
+          </div>
+          
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+          
+          <p style="color: #6b7280; font-size: 14px;">
+            Dit afspraakverzoek is verzonden via de MasterClean website.<br>
+            Verzonden op: ${new Date().toLocaleString("nl-NL", { timeZone: "Europe/Amsterdam" })}
+          </p>
+        </div>
+      `,
+    })
+
+    console.log("✅ Appointment email sent successfully:", emailResult)
+
+    // Send confirmation email to customer
+    try {
+      await resend.emails.send({
+        from: "MasterClean <onboarding@resend.dev>",
+        to: [email],
+        subject: "Afspraakverzoek ontvangen - MasterClean",
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #7c3aed;">Bedankt voor uw afspraakverzoek, ${name}!</h2>
+            
+            <p>Wij hebben uw verzoek voor een afspraak ontvangen en zullen zo snel mogelijk contact met u opnemen om de afspraak te bevestigen.</p>
+            
+            <div style="background-color: #faf5ff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #7c3aed;">
+              <h3 style="color: #374151; margin-top: 0;">📅 Uw Afspraakverzoek:</h3>
+              <p><strong>Datum:</strong> ${formattedDate}</p>
+              <p><strong>Tijd:</strong> ${formattedTime}</p>
+              <p><strong>Dienst:</strong> ${serviceType}</p>
+              ${address ? `<p><strong>Locatie:</strong> ${address}</p>` : ""}
+            </div>
+            
+            <div style="background-color: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+              <p style="margin: 0; color: #92400e;">
+                <strong>⏰ Wat gebeurt er nu?</strong><br>
+                Wij nemen binnen 24 uur contact met u op om de afspraak te bevestigen en eventuele details door te spreken.
+              </p>
+            </div>
+            
+            <div style="background-color: #dcfce7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+              <p style="margin: 0; color: #166534;">
+                <strong>🚀 Spoed of vragen?</strong><br>
+                Bel ons direct: <a href="tel:+31850805636" style="color: #ea580c;">+31 (0)85 0805636</a><br>
+                WhatsApp: <a href="https://wa.me/31657211993" style="color: #16a34a;">+31 6 57211993</a>
+              </p>
+            </div>
+            
+            <p>Met vriendelijke groet,<br>
+            Het MasterClean Team</p>
+            
+            <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+            
+            <div style="color: #6b7280; font-size: 14px;">
+              <p><strong>MasterClean</strong><br>
+              Telefoon: +31 (0)85 0805636<br>
+              WhatsApp: +31 6 57211993<br>
+              Email: info@mastercleanservice.nl<br>
+              Werkgebied: Zeeland & Noord-Holland</p>
+            </div>
+          </div>
+        `,
+      })
+      console.log("✅ Appointment confirmation email sent to customer")
+    } catch (confirmationError) {
+      console.warn("⚠️ Failed to send appointment confirmation email to customer:", confirmationError)
+    }
+
+    return {
+      success: true,
+      message: `Bedankt ${name}! Uw afspraakverzoek voor ${formattedDate} om ${formattedTime} is ontvangen. Wij nemen binnen 24 uur contact met u op om de afspraak te bevestigen.`,
+    }
+  } catch (error) {
+    console.error("❌ Failed to send appointment email:", error)
+
+    if (error instanceof Error) {
+      if (error.message.includes("API key")) {
+        return {
+          success: false,
+          error: "Email service configuratie probleem. Bel ons direct op +31 (0)85 0805636.",
+        }
+      }
+      if (error.message.includes("rate limit")) {
+        return {
+          success: false,
+          error: "Te veel berichten verzonden. Probeer het over een paar minuten opnieuw of bel +31 (0)85 0805636.",
+        }
+      }
+    }
+
+    return {
+      success: false,
+      error:
+        "Er is een probleem opgetreden bij het verzenden van uw afspraakverzoek. Bel ons direct op +31 (0)85 0805636 of stuur een WhatsApp naar +31 6 57211993.",
+    }
+  } finally {
+    console.log("=== APPOINTMENT FORM SUBMISSION END ===")
   }
 }
 

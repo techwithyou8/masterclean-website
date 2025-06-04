@@ -95,7 +95,7 @@ const translations = {
         },
         hours: {
           title: "Openingstijden",
-          description: "Ma-Zo: 07:00 - 22:00",
+          description: "Ma-Za: 09:00 - 17:00",
         },
       },
       form: {
@@ -226,7 +226,7 @@ const translations = {
         },
         hours: {
           title: "Öffnungszeiten",
-          description: "Mo-So: 07:00 - 22:00",
+          description: "Mo-Sa: 09:00 - 17:00",
         },
       },
       form: {
@@ -356,7 +356,7 @@ const translations = {
         },
         hours: {
           title: "Business Hours",
-          description: "Mon-Sun: 07:00 - 22:00",
+          description: "Mon-Sat: 09:00 - 17:00",
         },
       },
       form: {

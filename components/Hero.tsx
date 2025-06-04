@@ -75,12 +75,12 @@ export default function Hero({ translations, lang }: HeroProps) {
             {/* Floating card */}
             <div className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 max-w-xs">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 text-2xl">✓</span>
+                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                  <span className="text-orange-600 text-2xl">⚡</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">{translations.hero.guarantee.title}</div>
-                  <div className="text-sm text-gray-600">{translations.hero.guarantee.subtitle}</div>
+                  <div className="font-semibold text-gray-900">Professionele Service</div>
+                  <div className="text-sm text-gray-600">Snel, betrouwbaar & grondig!</div>
                 </div>
               </div>
             </div>

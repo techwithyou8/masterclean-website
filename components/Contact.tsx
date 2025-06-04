@@ -1,15 +1,35 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import type React from "react"
+
+import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail, MapPin, Clock, AlertCircle, CheckCircle, Settings } from "lucide-react"
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  AlertCircle,
+  CheckCircle,
+  Settings,
+  Upload,
+  X,
+  FileText,
+  ImageIcon,
+} from "lucide-react"
 import { submitContactForm, debugEnvironmentSetup } from "@/lib/actions"
 
 interface ContactProps {
   translations: any
+}
+
+interface UploadedFile {
+  file: File
+  preview?: string
+  id: string
 }
 
 export default function Contact({ translations }: ContactProps) {
@@ -21,6 +41,9 @@ export default function Contact({ translations }: ContactProps) {
   } | null>(null)
   const [debugInfo, setDebugInfo] = useState<any>(null)
   const [showDebug, setShowDebug] = useState(false)
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
+  const [dragActive, setDragActive] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Debug function for development
   useEffect(() => {
@@ -29,12 +52,109 @@ export default function Contact({ translations }: ContactProps) {
     }
   }, [])
 
+  const handleFileSelect = (files: FileList | null) => {
+    if (!files) return
+
+    const newFiles: UploadedFile[] = []
+    const maxSize = 10 * 1024 * 1024 // 10MB
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "text/plain",
+    ]
+
+    Array.from(files).forEach((file) => {
+      if (file.size > maxSize) {
+        alert(`Bestand "${file.name}" is te groot. Maximum grootte is 10MB.`)
+        return
+      }
+
+      if (!allowedTypes.includes(file.type)) {
+        alert(
+          `Bestandstype van "${file.name}" wordt niet ondersteund. Toegestaan: afbeeldingen, PDF, Word documenten, tekstbestanden.`,
+        )
+        return
+      }
+
+      const fileId = Math.random().toString(36).substr(2, 9)
+      const uploadedFile: UploadedFile = {
+        file,
+        id: fileId,
+      }
+
+      // Create preview for images
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          setUploadedFiles((prev) =>
+            prev.map((f) => (f.id === fileId ? { ...f, preview: e.target?.result as string } : f)),
+          )
+        }
+        reader.readAsDataURL(file)
+      }
+
+      newFiles.push(uploadedFile)
+    })
+
+    setUploadedFiles((prev) => [...prev, ...newFiles])
+  }
+
+  const removeFile = (fileId: string) => {
+    setUploadedFiles((prev) => prev.filter((f) => f.id !== fileId))
+  }
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true)
+    } else if (e.type === "dragleave") {
+      setDragActive(false)
+    }
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setDragActive(false)
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileSelect(e.dataTransfer.files)
+    }
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return "0 Bytes"
+    const k = 1024
+    const sizes = ["Bytes", "KB", "MB", "GB"]
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+  }
+
+  const getFileIcon = (fileType: string) => {
+    if (fileType.startsWith("image/")) {
+      return <ImageIcon className="w-5 h-5 text-blue-600" />
+    }
+    return <FileText className="w-5 h-5 text-gray-600" />
+  }
+
   async function handleSubmit(formData: FormData) {
     setIsSubmitting(true)
     setSubmitResult(null)
 
     try {
-      console.log("Submitting contact form...")
+      console.log("Submitting contact form with files...")
+
+      // Add uploaded files to form data
+      uploadedFiles.forEach((uploadedFile, index) => {
+        formData.append(`file_${index}`, uploadedFile.file)
+      })
+
       const result = await submitContactForm(formData)
       console.log("Form submission result:", result)
       setSubmitResult(result)
@@ -45,6 +165,7 @@ export default function Contact({ translations }: ContactProps) {
         if (form) {
           form.reset()
         }
+        setUploadedFiles([]) // Clear uploaded files
       }
     } catch (error) {
       console.error("Error submitting form:", error)
@@ -101,6 +222,7 @@ export default function Contact({ translations }: ContactProps) {
                           <p>• Contact information will be processed</p>
                           <p>• Users will receive confirmation message</p>
                           <p>• Direct contact options are available</p>
+                          <p>• File upload functionality enabled</p>
                         </div>
                       </div>
 
@@ -191,6 +313,7 @@ export default function Contact({ translations }: ContactProps) {
             <Card className="border-0 shadow-xl">
               <CardHeader>
                 <CardTitle className="text-2xl text-gray-900">{translations.contact.form.title}</CardTitle>
+                <p className="text-gray-600">Voeg foto's of documenten toe om uw vraag te verduidelijken</p>
               </CardHeader>
               <CardContent>
                 {/* Success/Error Messages */}
@@ -272,6 +395,90 @@ export default function Contact({ translations }: ContactProps) {
                     />
                   </div>
 
+                  {/* File Upload Section */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Bestanden Toevoegen (Optioneel)
+                    </label>
+                    <div
+                      className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                        dragActive ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-gray-400"
+                      }`}
+                      onDragEnter={handleDrag}
+                      onDragLeave={handleDrag}
+                      onDragOver={handleDrag}
+                      onDrop={handleDrop}
+                    >
+                      <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                      <p className="text-gray-600 mb-2">
+                        Sleep bestanden hierheen of{" "}
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current?.click()}
+                          className="text-blue-600 hover:text-blue-700 font-medium"
+                          disabled={isSubmitting}
+                        >
+                          klik om te selecteren
+                        </button>
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Toegestaan: Afbeeldingen, PDF, Word documenten (max 10MB per bestand)
+                      </p>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        multiple
+                        accept="image/*,.pdf,.doc,.docx,.txt"
+                        onChange={(e) => handleFileSelect(e.target.files)}
+                        className="hidden"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+
+                    {/* Uploaded Files Display */}
+                    {uploadedFiles.length > 0 && (
+                      <div className="mt-4 space-y-2">
+                        <p className="text-sm font-medium text-gray-700">
+                          Geselecteerde bestanden ({uploadedFiles.length}):
+                        </p>
+                        <div className="space-y-2 max-h-40 overflow-y-auto">
+                          {uploadedFiles.map((uploadedFile) => (
+                            <div
+                              key={uploadedFile.id}
+                              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                            >
+                              <div className="flex items-center space-x-3">
+                                {uploadedFile.preview ? (
+                                  <img
+                                    src={uploadedFile.preview || "/placeholder.svg"}
+                                    alt="Preview"
+                                    className="w-10 h-10 object-cover rounded"
+                                  />
+                                ) : (
+                                  getFileIcon(uploadedFile.file.type)
+                                )}
+                                <div>
+                                  <p className="text-sm font-medium text-gray-900 truncate max-w-xs">
+                                    {uploadedFile.file.name}
+                                  </p>
+                                  <p className="text-xs text-gray-500">{formatFileSize(uploadedFile.file.size)}</p>
+                                </div>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => removeFile(uploadedFile.id)}
+                                className="text-red-500 hover:text-red-700 p-1"
+                                disabled={isSubmitting}
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -283,7 +490,14 @@ export default function Contact({ translations }: ContactProps) {
                         <span>Versturen...</span>
                       </div>
                     ) : (
-                      translations.contact.form.send
+                      <>
+                        {translations.contact.form.send}
+                        {uploadedFiles.length > 0 && (
+                          <span className="ml-2 text-sm">
+                            ({uploadedFiles.length} bestand{uploadedFiles.length !== 1 ? "en" : ""})
+                          </span>
+                        )}
+                      </>
                     )}
                   </Button>
                 </form>

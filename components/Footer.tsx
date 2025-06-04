@@ -24,7 +24,13 @@ export default function Footer({ translations, lang }: FooterProps) {
                 className="h-10 w-auto object-contain brightness-0 invert"
               />
             </div>
-            <p className="text-gray-400">{translations.footer.description}</p>
+            <div className="space-y-2">
+              <p className="text-gray-400">{translations.footer.description}</p>
+              <div className="text-sm text-gray-500 space-y-1">
+                <p>K.V.K 96538414</p>
+                <p>BTW NL005215222B17</p>
+              </div>
+            </div>
             <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
               <a href="tel:+31850805636">
                 <Phone className="w-4 h-4 mr-2" />
