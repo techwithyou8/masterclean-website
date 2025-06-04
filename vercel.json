@@ -3,8 +3,10 @@
   "outputDirectory": ".next",
   "framework": "nextjs",
   "regions": ["ams1"],
-  "env": {
-    "RESEND_API_KEY": "@resend_api_key"
+  "functions": {
+    "app/api/**/*.ts": {
+      "runtime": "nodejs18.x"
+    }
   },
   "headers": [
     {
