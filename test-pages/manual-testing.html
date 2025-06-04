@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterClean Website Manual Testing Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .checklist input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .status-pass { background-color: #d4edda; border-color: #c3e6cb; }
+        .status-fail { background-color: #f8d7da; border-color: #f5c6cb; }
+        .status-warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        .test-url {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .device-frame {
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+        .mobile { width: 375px; height: 667px; }
+        .tablet { width: 768px; height: 1024px; }
+        .desktop { width: 1920px; height: 1080px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 MasterClean Website Manual Testing Guide</h1>
+    <p><strong>Domain:</strong> <a href="https://mastercleanservice.nl" target="_blank">https://mastercleanservice.nl</a></p>
+    <p><strong>Test Date:</strong> <span id="test-date"></span></p>
+
+    <div class="test-section">
+        <h2>🌐 1. Domain & SSL Verification</h2>
+        <div class="test-url">Test URLs:</div>
+        <ul>
+            <li><a href="https://mastercleanservice.nl" target="_blank">https://mastercleanservice.nl</a></li>
+            <li><a href="https://www.mastercleanservice.nl" target="_blank">https://www.mastercleanservice.nl</a></li>
+            <li><a href="http://mastercleanservice.nl" target="_blank">http://mastercleanservice.nl</a> (should redirect to HTTPS)</li>
+        </ul>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> Primary domain loads correctly</li>
+            <li><input type="checkbox"> WWW subdomain loads correctly</li>
+            <li><input type="checkbox"> HTTP redirects to HTTPS</li>
+            <li><input type="checkbox"> SSL certificate is valid (🔒 icon in browser)</li>
+            <li><input type="checkbox"> No mixed content warnings</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 2. Responsive Design Testing</h2>
+        <p>Test the website on different screen sizes using browser developer tools (F12 → Toggle device toolbar)</p>
+        
+        <h3>Mobile (375x667)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> Hamburger menu appears and works</li>
+            <li><input type="checkbox"> Text is readable without zooming</li>
+            <li><input type="checkbox"> Buttons are large enough for touch</li>
+            <li><input type="checkbox"> Images scale properly</li>
+            <li><input type="checkbox"> Contact form is easy to use</li>
+            <li><input type="checkbox"> Phone number is clickable (tap-to-call)</li>
+        </ul>
+
+        <h3>Tablet (768x1024)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> Layout adjusts appropriately</li>
+            <li><input type="checkbox"> Navigation remains accessible</li>
+            <li><input type="checkbox"> Content is well-spaced</li>
+            <li><input type="checkbox"> Images maintain aspect ratio</li>
+        </ul>
+
+        <h3>Desktop (1920x1080)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> Full navigation menu displays</li>
+            <li><input type="checkbox"> Content doesn't stretch too wide</li>
+            <li><input type="checkbox"> All elements properly positioned</li>
+            <li><input type="checkbox"> Hover effects work on buttons</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔗 3. Navigation & Links Testing</h2>
+        <div class="test-url">Test each navigation item:</div>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/" target="_blank">Home</a> - Loads correctly</li>
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/services" target="_blank">Services</a> - Loads correctly</li>
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/about" target="_blank">About</a> - Loads correctly</li>
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/contact" target="_blank">Contact</a> - Loads correctly</li>
+            <li><input type="checkbox"> Logo links back to homepage</li>
+            <li><input type="checkbox"> Footer links work correctly</li>
+            <li><input type="checkbox"> Language selector changes content</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🌍 4. Multilingual Testing</h2>
+        <div class="test-url">Test language switching:</div>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/?lang=nl" target="_blank">Dutch (Default)</a> - Content in Dutch</li>
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/?lang=de" target="_blank">German</a> - Content in German</li>
+            <li><input type="checkbox"> <a href="https://mastercleanservice.nl/?lang=en" target="_blank">English</a> - Content in English</li>
+            <li><input type="checkbox"> Language preference persists when navigating</li>
+            <li><input type="checkbox"> All text content translates properly</li>
+            <li><input type="checkbox"> No untranslated text visible</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📧 5. Contact Form Testing</h2>
+        <div class="test-url">Go to: <a href="https://mastercleanservice.nl/contact" target="_blank">Contact Page</a></div>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> Contact form displays correctly</li>
+            <li><input type="checkbox"> Required fields are marked with *</li>
+            <li><input type="checkbox"> Email validation works (try invalid email)</li>
+            <li><input type="checkbox"> Form shows loading state when submitting</li>
+            <li><input type="checkbox"> Success message appears after submission</li>
+            <li><input type="checkbox"> Test email received at info@mastercleanservice.nl</li>
+            <li><input type="checkbox"> Confirmation email sent to test address</li>
+            <li><input type="checkbox"> Error handling works (test with network disabled)</li>
+        </ul>
+
+        <h3>Test Form Data:</h3>
+        <div style="background: #f0f0f0; padding: 10px; border-radius: 4px; font-family: monospace;">
+            Name: Test User<br>
+            Email: your-email@example.com<br>
+            Phone: +31 6 12345678<br>
+            Message: This is a test submission to verify contact form functionality.
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📞 6. Contact Information Testing</h2>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> Phone number +31 (0)85 0805636 appears consistently</li>
+            <li><input type="checkbox"> <a href="tel:+31850805636">Phone link</a> opens phone app</li>
+            <li><input type="checkbox"> Email info@mastercleanservice.nl appears correctly</li>
+            <li><input type="checkbox"> <a href="mailto:info@mastercleanservice.nl">Email link</a> opens email client</li>
+            <li><input type="checkbox"> Service area "Zeeland & Noord-Holland" mentioned</li>
+            <li><input type="checkbox"> Business hours displayed correctly</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🖼️ 7. Images & Media Testing</h2>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> MasterClean logo loads and displays properly</li>
+            <li><input type="checkbox"> Hero/banner images load correctly</li>
+            <li><input type="checkbox"> Service section images display</li>
+            <li><input type="checkbox"> Team member photos load (About page)</li>
+            <li><input type="checkbox"> All images have appropriate alt text</li>
+            <li><input type="checkbox"> Images scale properly on different devices</li>
+            <li><input type="checkbox"> No broken image icons (❌) visible</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🌐 8. Browser Compatibility Testing</h2>
+        <p>Test the website in different browsers:</p>
+        
+        <h3>Chrome (Latest)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> All features work correctly</li>
+            <li><input type="checkbox"> No console errors (F12 → Console)</li>
+            <li><input type="checkbox"> Fast loading performance</li>
+        </ul>
+
+        <h3>Firefox (Latest)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> All features work correctly</li>
+            <li><input type="checkbox"> No console errors</li>
+            <li><input type="checkbox"> Acceptable performance</li>
+        </ul>
+
+        <h3>Safari (Latest)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> All features work correctly</li>
+            <li><input type="checkbox"> No console errors</li>
+            <li><input type="checkbox"> Good performance</li>
+        </ul>
+
+        <h3>Edge (Latest)</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> All features work correctly</li>
+            <li><input type="checkbox"> No console errors</li>
+            <li><input type="checkbox"> Good performance</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>⚡ 9. Performance Testing</h2>
+        <p>Use online tools to test performance:</p>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fmastercleanservice.nl" target="_blank">Google PageSpeed Insights</a> - Score > 80</li>
+            <li><input type="checkbox"> <a href="https://gtmetrix.com/" target="_blank">GTmetrix</a> - Grade A or B</li>
+            <li><input type="checkbox"> Page loads in under 3 seconds</li>
+            <li><input type="checkbox"> Images load quickly</li>
+            <li><input type="checkbox"> No layout shifts during loading</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔍 10. SEO & Content Testing</h2>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> Page titles are descriptive and unique</li>
+            <li><input type="checkbox"> Meta descriptions present</li>
+            <li><input type="checkbox"> Proper heading structure (H1, H2, H3)</li>
+            <li><input type="checkbox"> Company name "MasterClean" appears prominently</li>
+            <li><input type="checkbox"> Service descriptions are clear</li>
+            <li><input type="checkbox"> Contact information easily findable</li>
+            <li><input type="checkbox"> No spelling or grammar errors</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>♿ 11. Accessibility Testing</h2>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> Can navigate entire site using only keyboard (Tab key)</li>
+            <li><input type="checkbox"> Focus indicators visible on interactive elements</li>
+            <li><input type="checkbox"> Text has sufficient color contrast</li>
+            <li><input type="checkbox"> Form fields have proper labels</li>
+            <li><input type="checkbox"> Images have descriptive alt text</li>
+            <li><input type="checkbox"> <a href="https://wave.webaim.org/report#/https://mastercleanservice.nl" target="_blank">WAVE Accessibility Test</a> - No major errors</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔒 12. Security Testing</h2>
+        
+        <ul class="checklist">
+            <li><input type="checkbox"> <a href="https://securityheaders.com/?q=https%3A%2F%2Fmastercleanservice.nl" target="_blank">Security Headers</a> - Grade A or B</li>
+            <li><input type="checkbox"> <a href="https://ssllabs.com/ssltest/analyze.html?d=mastercleanservice.nl" target="_blank">SSL Labs Test</a> - Grade A</li>
+            <li><input type="checkbox"> No mixed content warnings</li>
+            <li><input type="checkbox"> HTTPS enforced (HTTP redirects to HTTPS)</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🎯 13. User Journey Testing</h2>
+        
+        <h3>Scenario 1: Customer wants cleaning service</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> 1. Arrives at homepage</li>
+            <li><input type="checkbox"> 2. Clicks "Diensten" in navigation</li>
+            <li><input type="checkbox"> 3. Reads about vacation home cleaning</li>
+            <li><input type="checkbox"> 4. Clicks "Vraag Offerte" button</li>
+            <li><input type="checkbox"> 5. Fills out contact form</li>
+            <li><input type="checkbox"> 6. Receives confirmation message</li>
+        </ul>
+
+        <h3>Scenario 2: Customer wants immediate contact</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> 1. Arrives at homepage</li>
+            <li><input type="checkbox"> 2. Sees prominent "BEL NU" button</li>
+            <li><input type="checkbox"> 3. Clicks phone button</li>
+            <li><input type="checkbox"> 4. Phone app opens with correct number</li>
+        </ul>
+
+        <h3>Scenario 3: International customer</h3>
+        <ul class="checklist">
+            <li><input type="checkbox"> 1. Arrives at Dutch homepage</li>
+            <li><input type="checkbox"> 2. Notices language selector</li>
+            <li><input type="checkbox"> 3. Switches to English or German</li>
+            <li><input type="checkbox"> 4. All content updates to selected language</li>
+            <li><input type="checkbox"> 5. Can navigate and use contact form</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Test Results Summary</h2>
+        <div id="test-summary">
+            <p><strong>Total Tests:</strong> <span id="total-tests">0</span></p>
+            <p><strong>Passed:</strong> <span id="passed-tests">0</span></p>
+            <p><strong>Failed:</strong> <span id="failed-tests">0</span></p>
+            <p><strong>Success Rate:</strong> <span id="success-rate">0%</span></p>
+        </div>
+        
+        <div id="overall-status" style="padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; font-weight: bold; font-size: 18px;">
+            Complete the tests above to see your results
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('test-date').textContent = new Date().toLocaleDateString();
+
+        // Calculate test results
+        function updateTestSummary() {
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            const total = checkboxes.length;
+            const passed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const failed = total - passed;
+            const successRate = total > 0 ? Math.round((passed / total) * 100) : 0;
+
+            document.getElementById('total-tests').textContent = total;
+            document.getElementById('passed-tests').textContent = passed;
+            document.getElementById('failed-tests').textContent = failed;
+            document.getElementById('success-rate').textContent = successRate + '%';
+
+            const statusDiv = document.getElementById('overall-status');
+            if (successRate >= 95) {
+                statusDiv.textContent = '🎉 Excellent! Website is ready for production';
+                statusDiv.className = 'status-pass';
+            } else if (successRate >= 85) {
+                statusDiv.textContent = '✨ Good! Minor issues to address';
+                statusDiv.className = 'status-warning';
+            } else if (successRate >= 70) {
+                statusDiv.textContent = '🔧 Needs work. Several issues to fix';
+                statusDiv.className = 'status-warning';
+            } else {
+                statusDiv.textContent = '❌ Critical issues need immediate attention';
+                statusDiv.className = 'status-fail';
+            }
+        }
+
+        // Add event listeners to all checkboxes
+        document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateTestSummary);
+        });
+
+        // Initial calculation
+        updateTestSummary();
+
+        // Auto-save progress to localStorage
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            const progress = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('masterclean-test-progress', JSON.stringify(progress));
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('masterclean-test-progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+                progress.forEach((checked, index) => {
+                    if (checkboxes[index]) {
+                        checkboxes[index].checked = checked;
+                    }
+                });
+                updateTestSummary();
+            }
+        }
+
+        // Load saved progress
+        loadProgress();
+
+        // Save progress on change
+        document.querySelectorAll('.checklist input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', saveProgress);
+        });
+    </script>
+</body>
+</html>
