@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "regions": ["ams1"],
+  "regions": ["bru1"],
   "env": {
     "RESEND_API_KEY": "@resend_api_key"
   },
