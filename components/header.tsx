@@ -4,42 +4,49 @@ import { ChevronDown, Phone } from "lucide-react"
 
 export default function Header() {
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-white border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600">
+            <Link href="/" className="text-3xl font-bold text-blue-500 tracking-wide">
               MASTERCLEAN
             </Link>
           </div>
 
           {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+          <nav className="hidden md:flex space-x-12">
+            <Link href="/" className="text-gray-700 hover:text-blue-500 text-base font-medium transition-colors">
               Home
             </Link>
-            <Link href="/diensten" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+            <Link
+              href="/diensten"
+              className="text-gray-700 hover:text-blue-500 text-base font-medium transition-colors"
+            >
               Diensten
             </Link>
-            <Link href="/about" className="text-blue-600 border-b-2 border-blue-600 px-3 py-2 text-sm font-medium">
+            <Link href="/about" className="text-blue-500 text-base font-semibold border-b-2 border-blue-500 pb-1">
               Over Ons
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+            <Link href="/contact" className="text-gray-700 hover:text-blue-500 text-base font-medium transition-colors">
               Contact
             </Link>
           </nav>
 
           {/* Language & CTA */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1 text-sm">
-              <span className="w-5 h-4 bg-orange-500 rounded-sm"></span>
-              <span className="w-5 h-4 bg-white border rounded-sm"></span>
-              <span className="w-5 h-4 bg-blue-500 rounded-sm"></span>
-              <span className="text-gray-700 font-medium">NL</span>
+          <div className="flex items-center space-x-6">
+            {/* Dutch Flag */}
+            <div className="flex items-center space-x-2 cursor-pointer">
+              <div className="flex">
+                <div className="w-1 h-4 bg-red-600"></div>
+                <div className="w-1 h-4 bg-white border-t border-b border-gray-300"></div>
+                <div className="w-1 h-4 bg-blue-600"></div>
+              </div>
+              <span className="text-gray-800 font-medium text-sm">NL</span>
               <ChevronDown className="w-4 h-4 text-gray-500" />
             </div>
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md font-medium">
+
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-sm tracking-wide shadow-lg">
               <Phone className="w-4 h-4 mr-2" />
               BEL NU
             </Button>
