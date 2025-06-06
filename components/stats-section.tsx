@@ -1,37 +1,25 @@
 export default function StatsSection() {
-  const stats = [
-    {
-      number: "500+",
-      label: "Tevreden Klanten",
-      color: "text-blue-500",
-    },
-    {
-      number: "10+",
-      label: "Jaar Ervaring",
-      color: "text-blue-500",
-    },
-    {
-      number: "24/7",
-      label: "Service Beschikbaar",
-      color: "text-blue-500",
-    },
-    {
-      number: "100%",
-      label: "Tevredenheidsgarantie",
-      color: "text-blue-500",
-    },
-  ]
-
   return (
-    <section className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center space-y-3">
-              <div className={`text-5xl lg:text-6xl font-bold ${stat.color} mb-2`}>{stat.number}</div>
-              <div className="text-gray-600 font-medium text-base lg:text-lg leading-tight">{stat.label}</div>
-            </div>
-          ))}
+    <section className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Exact 4-column grid layout */}
+        <div className="grid grid-cols-4 gap-8 text-center">
+          <div>
+            <div className="text-4xl font-bold text-blue-500 mb-2">500+</div>
+            <div className="text-gray-600 font-medium">Tevreden Klanten</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-blue-500 mb-2">10+</div>
+            <div className="text-gray-600 font-medium">Jaar Ervaring</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-blue-500 mb-2">24/7</div>
+            <div className="text-gray-600 font-medium">Service Beschikbaar</div>
+          </div>
+          <div>
+            <div className="text-4xl font-bold text-blue-500 mb-2">100%</div>
+            <div className="text-gray-600 font-medium">Tevredenheidsgarantie</div>
+          </div>
         </div>
       </div>
     </section>

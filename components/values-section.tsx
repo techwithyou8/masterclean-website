@@ -1,16 +1,13 @@
 export default function ValuesSection() {
   return (
-    <section className="bg-gray-50 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Onze Waarden</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Bij MasterClean staan kwaliteit, betrouwbaarheid en klanttevredenheid centraal in alles wat we doen.
-          </p>
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Just the title as shown in screenshot */}
+        <div className="text-left">
+          <h2 className="text-4xl font-bold text-gray-900">Onze Waarden</h2>
         </div>
-
-        {/* Values content would continue here */}
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Rest of content would continue below */}
+        <div className="grid md:grid-cols-3 gap-8 mt-16">
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <div className="w-8 h-8 bg-blue-500 rounded-full"></div>
