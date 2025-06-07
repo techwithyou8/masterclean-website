@@ -255,8 +255,16 @@ export default function Contact({ translations }: ContactProps) {
                   <div className="flex-1">
                     <h3 className="font-semibold text-gray-900 mb-2">{translations.contact.info.phone.title}</h3>
                     <p className="text-gray-600 mb-3">+31 (0)85 0805636</p>
+<<<<<<< HEAD
                     <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
                       <a href="tel:+31850805636">BEL NU</a>
+=======
+                    <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
+                      <a href="tel:+31850805636">
+                        <Phone className="w-4 h-4 mr-2" />
+                        {translations.nav.callNow}
+                      </a>
+>>>>>>> b1ce85d (Initial commit)
                     </Button>
                   </div>
                 </div>
@@ -487,7 +495,11 @@ export default function Contact({ translations }: ContactProps) {
                     {isSubmitting ? (
                       <div className="flex items-center space-x-2">
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+<<<<<<< HEAD
                         <span>Versturen...</span>
+=======
+                        <span>{translations.contact.form.sending}</span>
+>>>>>>> b1ce85d (Initial commit)
                       </div>
                     ) : (
                       <>

@@ -83,7 +83,11 @@ export default function Header({ translations, lang }: HeaderProps) {
             <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-2 animate-pulse" asChild>
               <a href="tel:+31850805636">
                 <Phone className="w-4 h-4 mr-2" />
+<<<<<<< HEAD
                 BEL NU
+=======
+                {translations.nav.callNow}
+>>>>>>> b1ce85d (Initial commit)
               </a>
             </Button>
           </nav>
@@ -136,7 +140,11 @@ export default function Header({ translations, lang }: HeaderProps) {
               <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold w-fit animate-pulse" asChild>
                 <a href="tel:+31850805636">
                   <Phone className="w-4 h-4 mr-2" />
+<<<<<<< HEAD
                   BEL NU
+=======
+                  {translations.nav.callNow}
+>>>>>>> b1ce85d (Initial commit)
                 </a>
               </Button>
             </nav>

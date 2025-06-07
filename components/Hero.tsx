@@ -36,7 +36,11 @@ export default function Hero({ translations, lang }: HeroProps) {
               >
                 <a href="tel:+31850805636">
                   <Phone className="w-5 h-5 mr-2" />
+<<<<<<< HEAD
                   BEL NU DIRECT!
+=======
+                  {translations.nav.callNow}
+>>>>>>> b1ce85d (Initial commit)
                 </a>
               </Button>
             </div>

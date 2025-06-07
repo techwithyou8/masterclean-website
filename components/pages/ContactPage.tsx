@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, memo } from "react"
 import Contact from "@/components/Contact"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -13,6 +13,62 @@ interface ContactPageProps {
   searchParams: { lang?: string }
 }
 
+// Move static arrays outside the component for performance
+const serviceAreas = [
+  "Middelburg",
+  "Vlissingen",
+  "Goes",
+  "Terneuzen",
+  "Hulst",
+  "Domburg",
+  "Kamperland",
+  "Renesse",
+  "Breskens",
+  "Scheveningen",
+  "Katwijk",
+  "Kijkduin",
+  "Naaldwijk",
+  "Wassenaar",
+  "Den Haag",
+]
+
+const faqItems = [
+  {
+    question: "Hoe snel kunnen jullie beginnen?",
+    answer:
+      "In de meeste gevallen kunnen wij binnen 24-48 uur starten, afhankelijk van de beschikbaarheid en het type dienst.",
+  },
+  {
+    question: "Zijn jullie verzekerd?",
+    answer: "Ja, wij hebben een volledige WA-verzekering en bedrijfsverzekering voor uw gemoedsrust.",
+  },
+  {
+    question: "Welke schoonmaakmiddelen gebruiken jullie?",
+    answer:
+      "Wij gebruiken professionele, milieuvriendelijke schoonmaakmiddelen die veilig zijn voor mensen en huisdieren.",
+  },
+  {
+    question: "Kunnen jullie ook in het weekend werken?",
+    answer: "Ja, wij zijn 7 dagen per week beschikbaar, inclusief weekenden en feestdagen.",
+  },
+]
+
+// Memoized CardList for FAQ
+const FAQCardList = memo(function FAQCardList({ items }: { items: any[] }) {
+  return (
+    <div className="max-w-4xl mx-auto space-y-6">
+      {items.map((item, index) => (
+        <Card key={index} className="border-0 shadow-lg">
+          <CardContent className="p-8">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">{item.question}</h3>
+            <p className="text-gray-600 leading-relaxed">{item.answer}</p>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+})
+
 export default function ContactPage({ searchParams }: ContactPageProps) {
   const lang = searchParams.lang || "nl"
   const t = getTranslations(lang)
@@ -25,28 +81,29 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
     error?: string
   } | null>(null)
 
+  // Remove all merge conflict markers and keep the correct, unified code:
   const contactMethods = [
     {
       icon: Phone,
-      title: "Bel Direct",
-      description: "Voor directe vragen en spoedgevallen",
-      action: "BEL NU",
+      title: t.nav.callNow,
+      description: t.contact.info.phone.title,
+      action: t.nav.callNow,
       link: "tel:+31850805636",
       color: "orange",
     },
     {
       icon: Mail,
-      title: "Stuur Een Email",
-      description: "Voor uitgebreide vragen en offertes",
-      action: "STUUR EMAIL",
+      title: t.contact.info.email.title,
+      description: t.contact.info.email.title,
+      action: t.contact.info.email.title,
       link: "mailto:info@mastercleanservice.nl",
       color: "blue",
     },
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      description: "Voor snelle communicatie",
-      action: "WHATSAPP NU",
+      description: "WhatsApp",
+      action: "WhatsApp",
       link: "https://wa.me/31657211993?text=Hallo%20MasterClean%2C%20ik%20heb%20interesse%20in%20jullie%20schoonmaakdiensten.",
       color: "green",
     },
@@ -54,49 +111,10 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       icon: Calendar,
       title: "Plan Een Afspraak",
       description: "Voor een persoonlijk gesprek",
-      action: "PLAN AFSPRAAK",
+      action: "Plan Afspraak",
       link: "#",
       color: "purple",
       onClick: () => setShowAppointmentModal(true),
-    },
-  ]
-
-  const serviceAreas = [
-    "Middelburg",
-    "Vlissingen",
-    "Goes",
-    "Terneuzen",
-    "Hulst",
-    "Domburg",
-    "Kamperland",
-    "Renesse",
-    "Breskens",
-    "Scheveningen",
-    "Katwijk",
-    "Kijkduin",
-    "Naaldwijk",
-    "Wassenaar",
-    "Den Haag",
-  ]
-
-  const faqItems = [
-    {
-      question: "Hoe snel kunnen jullie beginnen?",
-      answer:
-        "In de meeste gevallen kunnen wij binnen 24-48 uur starten, afhankelijk van de beschikbaarheid en het type dienst.",
-    },
-    {
-      question: "Zijn jullie verzekerd?",
-      answer: "Ja, wij hebben een volledige WA-verzekering en bedrijfsverzekering voor uw gemoedsrust.",
-    },
-    {
-      question: "Welke schoonmaakmiddelen gebruiken jullie?",
-      answer:
-        "Wij gebruiken professionele, milieuvriendelijke schoonmaakmiddelen die veilig zijn voor mensen en huisdieren.",
-    },
-    {
-      question: "Kunnen jullie ook in het weekend werken?",
-      answer: "Ja, wij zijn 7 dagen per week beschikbaar, inclusief weekenden en feestdagen.",
     },
   ]
 
@@ -137,7 +155,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-bold animate-pulse" asChild>
               <a href="tel:+31850805636">
                 <Phone className="w-5 h-5 mr-2" />
-                BEL NU: +31 (0)85 0805636
+                {t.nav.callNow}: {t.hero.phone}
               </a>
             </Button>
             <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold" asChild>
@@ -172,22 +190,22 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
               >
                 <CardContent className="p-8">
                   <div
-                    className={`w-16 h-16 bg-${method.color}-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
+                    className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform ${method.color === 'green' ? 'bg-green-100' : method.color === 'orange' ? 'bg-orange-100' : method.color === 'blue' ? 'bg-blue-100' : method.color === 'purple' ? 'bg-purple-100' : ''}`}
                   >
-                    <method.icon className={`w-8 h-8 text-${method.color}-600`} />
+                    <method.icon className={`w-8 h-8 ${method.color === 'green' ? 'text-green-600' : method.color === 'orange' ? 'text-orange-600' : method.color === 'blue' ? 'text-blue-600' : method.color === 'purple' ? 'text-purple-600' : ''}`} />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">{method.title}</h3>
                   <p className="text-gray-600 mb-6">{method.description}</p>
                   {method.onClick ? (
                     <Button
                       onClick={method.onClick}
-                      className={`bg-${method.color}-600 hover:bg-${method.color}-700 text-white w-full font-bold`}
+                      className={`w-full font-bold ${method.color === 'green' ? 'bg-green-600 hover:bg-green-700' : method.color === 'orange' ? 'bg-orange-600 hover:bg-orange-700' : method.color === 'blue' ? 'bg-blue-600 hover:bg-blue-700' : method.color === 'purple' ? 'bg-purple-600 hover:bg-purple-700' : ''} text-white`}
                     >
                       {method.action}
                     </Button>
                   ) : (
                     <Button
-                      className={`bg-${method.color}-600 hover:bg-${method.color}-700 text-white w-full font-bold`}
+                      className={`w-full font-bold ${method.color === 'green' ? 'bg-green-600 hover:bg-green-700' : method.color === 'orange' ? 'bg-orange-600 hover:bg-orange-700' : method.color === 'blue' ? 'bg-blue-600 hover:bg-blue-700' : method.color === 'purple' ? 'bg-purple-600 hover:bg-purple-700' : ''} text-white`}
                       asChild
                     >
                       <a
@@ -212,7 +230,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b">
               <h2 className="text-2xl font-bold text-gray-900">Plan Een Afspraak</h2>
-              <button onClick={() => setShowAppointmentModal(false)} className="text-gray-400 hover:text-gray-600">
+              <button onClick={() => setShowAppointmentModal(false)} className="text-gray-400 hover:text-gray-600" title="Sluiten">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -418,7 +436,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
                   <a href="tel:+31850805636">
                     <Phone className="w-4 h-4 mr-2" />
-                    BEL NU
+                    {t.nav.callNow}
                   </a>
                 </Button>
                 <Button className="bg-green-500 hover:bg-green-600 text-white font-bold" asChild>
@@ -462,17 +480,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            {faqItems.map((item, index) => (
-              <Card key={index} className="border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">{item.question}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
+          <FAQCardList items={faqItems} />
           <div className="text-center mt-12">
             <p className="text-lg text-gray-600 mb-6">Heeft u nog andere vragen?</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
