@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { Phone, Mail, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import SocialMediaIcons from "./SocialMediaIcons"
 import Image from "next/image"
 
 interface FooterProps {
@@ -82,6 +83,10 @@ export default function Footer({ translations, lang }: FooterProps) {
                 <MapPin className="w-4 h-4" />
                 <span>{translations.footer.contact.area}</span>
               </div>
+            </div>
+            <div className="mt-4">
+              <h4 className="text-sm font-semibold mb-3 text-white">Volg ons</h4>
+              <SocialMediaIcons variant="footer" />
             </div>
           </div>
 

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation"
 import { Menu, X, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import LanguageSelector from "./LanguageSelector"
+import SocialMediaIcons from "./SocialMediaIcons"
 import Image from "next/image"
 
 interface HeaderProps {
@@ -81,6 +82,7 @@ export default function Header({ translations, lang }: HeaderProps) {
               {translations.nav.contact}
             </Link>
             <LanguageSelector currentLang={lang} />
+            <SocialMediaIcons variant="header" />
             <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-2 animate-pulse" asChild>
               <a href="tel:+31850805636">
                 <Phone className="w-4 h-4 mr-2" />
