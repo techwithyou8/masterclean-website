@@ -23,9 +23,12 @@ export default function LanguageSelector({ currentLang }: LanguageSelectorProps)
   const currentLanguage = languages.find((lang) => lang.code === currentLang) || languages[0]
 
   const handleLanguageChange = (langCode: string) => {
-    const newUrl = `${pathname}?lang=${langCode}`
-    router.push(newUrl)
+    // Preserve existing query params except lang
+    const params = new URLSearchParams(window.location.search)
+    params.set('lang', langCode)
+    router.push(`${pathname}?${params.toString()}`)
     setIsOpen(false)
+    // Removed forced reload; rely on Next.js prop/state updates
   }
 
   return (

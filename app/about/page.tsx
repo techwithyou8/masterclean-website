@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import AboutPage from "@/components/pages/AboutPage"
+import { PageLoadingSpinner } from "@/components/LoadingSpinner"
 
 export const metadata: Metadata = {
   title: "Over Ons - MasterClean | Ervaren Schoonmaakprofessionals",
@@ -11,14 +12,17 @@ export const metadata: Metadata = {
 }
 
 interface AboutPageProps {
-  searchParams: { lang?: string }
+  searchParams: Promise<{ lang?: string }>
 }
 
-export default function About({ searchParams }: AboutPageProps) {
+export default async function About({ searchParams }: AboutPageProps) {
+  const resolvedSearchParams = await searchParams
+  const lang = resolvedSearchParams.lang || "nl"
+  
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LayoutWrapper>
-        <AboutPage searchParams={searchParams} />
+    <Suspense fallback={<PageLoadingSpinner />}>
+      <LayoutWrapper lang={lang}>
+        <AboutPage searchParams={resolvedSearchParams} />
       </LayoutWrapper>
     </Suspense>
   )

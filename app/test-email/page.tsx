@@ -8,10 +8,17 @@ export const metadata: Metadata = {
   description: "Test the email functionality with Resend API",
 }
 
-export default function TestEmailPage() {
+interface TestEmailPageProps {
+  searchParams: Promise<{ lang?: string }>
+}
+
+export default async function TestEmailPage({ searchParams }: TestEmailPageProps) {
+  const resolvedSearchParams = await searchParams
+  const lang = resolvedSearchParams?.lang || "nl"
+  
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <LayoutWrapper>
+      <LayoutWrapper lang={lang}>
         <main className="pt-20 pb-20 bg-gray-50 min-h-screen">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">

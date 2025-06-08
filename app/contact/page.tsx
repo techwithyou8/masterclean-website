@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import ContactPage from "@/components/pages/ContactPage"
+import { PageLoadingSpinner } from "@/components/LoadingSpinner"
 
 export const metadata: Metadata = {
   title: "Contact - MasterClean | Neem Direct Contact Op",
@@ -11,14 +12,17 @@ export const metadata: Metadata = {
 }
 
 interface ContactPageProps {
-  searchParams: { lang?: string }
+  searchParams: Promise<{ lang?: string }>
 }
 
-export default function Contact({ searchParams }: ContactPageProps) {
+export default async function Contact({ searchParams }: ContactPageProps) {
+  const resolvedSearchParams = await searchParams
+  const lang = resolvedSearchParams.lang || "nl"
+  
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LayoutWrapper>
-        <ContactPage searchParams={searchParams} />
+    <Suspense fallback={<PageLoadingSpinner />}>
+      <LayoutWrapper lang={lang}>
+        <ContactPage searchParams={resolvedSearchParams} />
       </LayoutWrapper>
     </Suspense>
   )

@@ -11,112 +11,21 @@ interface ServicesPageProps {
   searchParams: { lang?: string }
 }
 
-// Move static arrays outside the component for performance
-const services = [
-  {
-    icon: Home,
-    title: "Vakantiehuis Schoonmaak",
-    description: "Professionele schoonmaakdiensten voor uw vakantiehuis.",
-    features: [
-      "Diepe reiniging van alle kamers",
-      "Badkamer en keuken desinfectie",
-      "Beddengoed en handdoeken wassen",
-      "Inventaris controle",
-      "Sleutelbeheer",
-      "24/7 beschikbaarheid",
-      "Flexibele tijden",
-    ],
-    image: "/vacation-home-cleaning.png",
-    detailedFeatures: [
-      "Complete reiniging van alle kamers",
-      "Badkamer en keuken desinfectie",
-      "Beddengoed verversen",
-      "Handdoeken wassen en vouwen",
-      "Inventaris controle en rapportage",
-      "Sleutelbeheer service",
-      "24/7 beschikbaarheid",
-      "Flexibele check-in/check-out tijden",
-    ],
-  },
-  {
-    icon: Building,
-    title: "Kantoor Schoonmaak",
-    description: "Betrouwbare schoonmaakdiensten voor uw kantoor.",
-    features: [
-      "Dagelijkse schoonmaak",
-      "Sanitaire voorzieningen onderhoud",
-      "Vloerreiniging en -onderhoud",
-      "Ramen en glaswerk",
-      "Prullenbakken legen",
-      "Keuken en pantry schoonmaak",
-      "Vergaderruimtes prepareren",
-      "Periodieke diepe reiniging",
-    ],
-    image: "/office-cleaning-service.png",
-    detailedFeatures: [
-      "Dagelijkse kantoorschoonmaak",
-      "Sanitaire voorzieningen onderhoud",
-      "Vloerreiniging en -onderhoud",
-      "Ramen en glaswerk",
-      "Prullenbakken legen",
-      "Keuken en pantry schoonmaak",
-      "Vergaderruimtes prepareren",
-      "Periodieke diepe reiniging",
-    ],
-  },
-  {
-    icon: Sparkles,
-    title: "Algemene Schoonmaak",
-    description: "Compleet aanbod van schoonmaakdiensten voor uw woning.",
-    features: [
-      "Volledige huisschoonmaak",
-      "Verhuisschoonmaak",
-      "Na-bouw schoonmaak",
-      "Voorjaarsschoonmaak",
-      "Tapijt en meubelreiniging",
-      "Ramen binnen en buiten",
-      "Oven en koelkast reiniging",
-      "Periodiek onderhoudscontract",
-    ],
-    image: "/residential-cleaning-service.png",
-    detailedFeatures: [
-      "Volledige huisschoonmaak",
-      "Verhuisschoonmaak",
-      "Na-bouw schoonmaak",
-      "Voorjaarsschoonmaak",
-      "Tapijt en meubelreiniging",
-      "Ramen binnen en buiten",
-      "Oven en koelkast reiniging",
-      "Periodiek onderhoudscontract",
-    ],
-  },
-]
-
-const benefits = [
-  {
-    icon: CheckCircle,
-    title: "Kwaliteit",
-    description: "Hoogwaardige schoonmaakdiensten gegarandeerd.",
-  },
-  {
-    icon: Clock,
-    title: "Flexibiliteit",
-    description: "Flexibele planning en aanpassingsmogelijkheden.",
-  },
-  {
-    icon: Users,
-    title: "Ervaren Team",
-    description: "Professioneel en ervaren schoonmaakteam.",
-  },
-  {
-    icon: Shield,
-    title: "Verzekerd",
-    description: "Onze diensten zijn volledig verzekerd.",
-  },
-]
+interface ServiceItem {
+  icon: React.ElementType;
+  image: string;
+  title: string;
+  description: string;
+  detailedFeatures: string[];
+}
+interface BenefitItem {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}
 
 // Memoized CardList for benefits
-const CardList = memo(function CardList({ items }: { items: any[] }) {
+const CardList = memo(function CardList({ items }: { items: BenefitItem[] }) {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
       {items.map((benefit, index) => (
@@ -137,6 +46,25 @@ const CardList = memo(function CardList({ items }: { items: any[] }) {
 export default function ServicesPage({ searchParams }: ServicesPageProps) {
   const lang = searchParams.lang || "nl"
   const t = getTranslations(lang)
+
+  // Map services and benefits from translations
+  const serviceKeys = ["vacation", "office", "general"] as const
+  const services = t.services.detailed.map((service, idx: number): ServiceItem => ({
+    ...service,
+    icon: [Home, Building, Sparkles][idx],
+    image: [
+      "/vacation-home-cleaning.png",
+      "/office-cleaning-service.png",
+      "/residential-cleaning-service.png"
+    ][idx],
+    title: t.services[serviceKeys[idx] as "vacation" | "office" | "general"].title,
+    description: t.services[serviceKeys[idx] as "vacation" | "office" | "general"].description,
+    detailedFeatures: service.features,
+  }))
+  const benefits = t.services.benefits.map((benefit, idx: number): BenefitItem => ({
+    ...benefit,
+    icon: [CheckCircle, Clock, Users, Shield][idx] || CheckCircle,
+  }))
 
   return (
     <main className="pt-20">
@@ -197,7 +125,7 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
-                    {service.detailedFeatures.map((feature, featureIndex) => (
+                    {service.detailedFeatures.map((feature: string, featureIndex: number) => (
                       <div key={featureIndex} className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>

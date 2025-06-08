@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import ServicesPage from "@/components/pages/ServicesPage"
+import { PageLoadingSpinner } from "@/components/LoadingSpinner"
 
 export const metadata: Metadata = {
   title: "Onze Diensten - MasterClean | Professionele Schoonmaakdiensten",
@@ -11,14 +12,17 @@ export const metadata: Metadata = {
 }
 
 interface ServicesPageProps {
-  searchParams: { lang?: string }
+  searchParams: Promise<{ lang?: string }>
 }
 
-export default function Services({ searchParams }: ServicesPageProps) {
+export default async function Services({ searchParams }: ServicesPageProps) {
+  const resolvedSearchParams = await searchParams
+  const lang = resolvedSearchParams.lang || "nl"
+  
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LayoutWrapper>
-        <ServicesPage searchParams={searchParams} />
+    <Suspense fallback={<PageLoadingSpinner />}>
+      <LayoutWrapper lang={lang}>
+        <ServicesPage searchParams={resolvedSearchParams} />
       </LayoutWrapper>
     </Suspense>
   )

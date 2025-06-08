@@ -53,12 +53,84 @@ const translations = {
           "Specialistische reiniging",
         ],
       },
+      detailed: [
+        {
+          key: "vacation",
+          features: [
+            "Diepe reiniging van alle kamers",
+            "Badkamer en keuken desinfectie",
+            "Beddengoed en handdoeken wassen",
+            "Inventaris controle",
+            "Sleutelbeheer",
+            "24/7 beschikbaarheid",
+            "Flexibele tijden",
+          ],
+        },
+        {
+          key: "office",
+          features: [
+            "Dagelijkse schoonmaak",
+            "Sanitaire voorzieningen onderhoud",
+            "Vloerreiniging en -onderhoud",
+            "Ramen en glaswerk",
+            "Prullenbakken legen",
+            "Keuken en pantry schoonmaak",
+            "Vergaderruimtes prepareren",
+            "Periodieke diepe reiniging",
+          ],
+        },
+        {
+          key: "general",
+          features: [
+            "Volledige huisschoonmaak",
+            "Verhuisschoonmaak",
+            "Na-bouw schoonmaak",
+            "Voorjaarsschoonmaak",
+            "Tapijt en meubelreiniging",
+            "Ramen binnen en buiten",
+            "Oven en koelkast reiniging",
+            "Periodiek onderhoudscontract",
+          ],
+        },
+      ],
+      benefits: [
+        {
+          title: "Kwaliteit",
+          description: "Hoogwaardige schoonmaakdiensten gegarandeerd.",
+        },
+        {
+          title: "Betrouwbaarheid",
+          description: "U kunt op ons rekenen, altijd op tijd en volgens afspraak.",
+        },
+        {
+          title: "Flexibiliteit",
+          description: "Wij passen ons aan uw wensen en planning aan.",
+        },
+      ],
     },
     about: {
       title: "Waarom Kiezen Voor MasterClean?",
       description:
         "Met meer dan 10 jaar ervaring in de schoonmaakbranche, staat MasterClean bekend om betrouwbaarheid, kwaliteit en klanttevredenheid. Ons ervaren team gebruikt professionele apparatuur en milieuvriendelijke producten.",
       experience: "Jaar Ervaring",
+      values: [
+        {
+          title: "Betrouwbaarheid",
+          description: "Wij staan voor onze afspraken en leveren altijd wat we beloven. Punctualiteit en consistentie zijn onze kernwaarden.",
+        },
+        {
+          title: "Kwaliteit",
+          description: "Alleen het beste is goed genoeg. Wij gebruiken professionele apparatuur en hoogwaardige, milieuvriendelijke producten.",
+        },
+        {
+          title: "Klanttevredenheid",
+          description: "Uw tevredenheid is ons doel. Wij gaan altijd de extra mijl om uw verwachtingen te overtreffen.",
+        },
+        {
+          title: "Precisie",
+          description: "Elk detail telt. Ons team is getraind om ook de kleinste hoekjes en gaatjes grondig schoon te maken.",
+        },
+      ],
       features: {
         insured: {
           title: "Volledig Verzekerd",
@@ -116,6 +188,48 @@ const translations = {
         message: "We hebben uw bericht ontvangen en nemen zo snel mogelijk contact met u op.",
         newMessage: "Nieuw Bericht Versturen",
       },
+      serviceAreas: [
+        "Middelburg",
+        "Vlissingen",
+        "Goes",
+        "Terneuzen",
+        "Hulst",
+        "Domburg",
+        "Kamperland",
+        "Renesse",
+        "Breskens",
+        "Scheveningen",
+        "Katwijk",
+        "Kijkduin",
+        "Naaldwijk",
+        "Wassenaar",
+        "Den Haag",
+      ],
+      faq: [
+        {
+          question: "Hoe snel kunnen jullie beginnen?",
+          answer: "In de meeste gevallen kunnen wij binnen 24-48 uur starten, afhankelijk van de beschikbaarheid en het type dienst.",
+        },
+        {
+          question: "Zijn jullie verzekerd?",
+          answer: "Ja, wij hebben een volledige WA-verzekering en bedrijfsverzekering voor uw gemoedsrust.",
+        },
+        {
+          question: "Welke schoonmaakmiddelen gebruiken jullie?",
+          answer: "Wij gebruiken professionele, milieuvriendelijke schoonmaakmiddelen die veilig zijn voor mensen en huisdieren.",
+        },
+        {
+          question: "Kunnen jullie ook in het weekend werken?",
+          answer: "Ja, wij zijn 7 dagen per week beschikbaar, inclusief weekenden en feestdagen.",
+        },
+      ],
+      faqSection: {
+        title: "Veelgestelde Vragen",
+        subtitle: "Hier vindt u antwoorden op de meest gestelde vragen over onze diensten",
+        moreQuestions: "Heeft u nog andere vragen?",
+        callButton: "BEL NU",
+        whatsappButton: "WHATSAPP"
+      },
     },
     footer: {
       description: "Professionele schoonmaakdiensten in Zeeland en Noord-Holland",
@@ -166,7 +280,7 @@ const translations = {
       cta: "Angebot Anfordern",
       vacation: {
         title: "Ferienhausreinigung",
-        description: "Professionelle Reinigung für Ferienhäuser und Mietunterkünfte",
+        description: "Professionelle Reinigung voor Ferienhäuser en Mietunterkünfte",
         features: [
           "Gründliche Reinigung zwischen Gästen",
           "Bettwäsche und Handtuch-Service",
@@ -184,12 +298,84 @@ const translations = {
         description: "Komplette Reinigungsdienste für Wohnungen und Unternehmen",
         features: ["Einmalige Grundreinigung", "Regelmäßige Wartung", "Umzugsreinigung", "Spezialreinigung"],
       },
+      detailed: [
+        {
+          key: "vacation",
+          features: [
+            "Tiefenreinigung aller Zimmer",
+            "Desinfektion von Bad und Küche",
+            "Bettwäsche und Handtücher waschen",
+            "Inventarkontrolle",
+            "Schlüsselverwaltung",
+            "24/7 Verfügbarkeit",
+            "Flexible Zeiten",
+          ],
+        },
+        {
+          key: "office",
+          features: [
+            "Tägliche Reinigung",
+            "Sanitäranlagenpflege",
+            "Bodenreinigung und -pflege",
+            "Fenster und Glasarbeiten",
+            "Mülleimer leeren",
+            "Küchen- und Pantryreinigung",
+            "Konferenzräume vorbereiten",
+            "Regelmäßige Tiefenreinigung",
+          ],
+        },
+        {
+          key: "general",
+          features: [
+            "Komplette Wohnungsreinigung",
+            "Umzugsreinigung",
+            "Nachbau-Reinigung",
+            "Frühjahrsputz",
+            "Teppich- und Polsterreinigung",
+            "Fenster innen und außen",
+            "Backofen- und Kühlschrankreinigung",
+            "Regelmäßiger Wartungsvertrag",
+          ],
+        },
+      ],
+      benefits: [
+        {
+          title: "Qualität",
+          description: "Hochwertige Reinigungsdienste garantiert.",
+        },
+        {
+          title: "Zuverlässigkeit",
+          description: "Sie können sich auf uns verlassen, immer pünktlich und wie vereinbart.",
+        },
+        {
+          title: "Flexibilität",
+          description: "Wir passen uns Ihren Wünschen und Ihrem Zeitplan an.",
+        },
+      ],
     },
     about: {
       title: "Warum MasterClean Wählen?",
       description:
         "Mit über 10 Jahren Erfahrung in der Reinigungsbranche steht MasterClean für Zuverlässigkeit, Qualität und Kundenzufriedenheit. Unser erfahrenes Team verwendet professionelle Ausrüstung und umweltfreundliche Produkte.",
       experience: "Jahre Erfahrung",
+      values: [
+        {
+          title: "Zuverlässigkeit",
+          description: "Wir halten unsere Versprechen und liefern immer, was wir zusagen. Pünktlichkeit und Beständigkeit sind unsere Kernwerte.",
+        },
+        {
+          title: "Qualität",
+          description: "Nur das Beste ist gut genug. Wir verwenden professionelle Ausrüstung und hochwertige, umweltfreundliche Produkte.",
+        },
+        {
+          title: "Kundenzufriedenheit",
+          description: "Ihre Zufriedenheit ist unser Ziel. Wir gehen immer die Extrameile, um Ihre Erwartungen zu übertreffen.",
+        },
+        {
+          title: "Präzision",
+          description: "Jedes Detail zählt. Unser Team ist geschult, auch die kleinsten Ecken gründlich zu reinigen.",
+        },
+      ],
       features: {
         insured: {
           title: "Vollversichert",
@@ -247,9 +433,51 @@ const translations = {
         message: "Wir haben Ihre Nachricht erhalten und werden uns so schnell wie möglich bei Ihnen melden.",
         newMessage: "Neue Nachricht Senden",
       },
+      serviceAreas: [
+        "Middelburg",
+        "Vlissingen",
+        "Goes",
+        "Terneuzen",
+        "Hulst",
+        "Domburg",
+        "Kamperland",
+        "Renesse",
+        "Breskens",
+        "Scheveningen",
+        "Katwijk",
+        "Kijkduin",
+        "Naaldwijk",
+        "Wassenaar",
+        "Den Haag",
+      ],
+      faq: [
+        {
+          question: "Wie schnell können Sie beginnen?",
+          answer: "In den meisten Fällen können wir innerhalb von 24-48 Stunden starten, abhängig von Verfügbarkeit und Dienstleistung.",
+        },
+        {
+          question: "Sind Sie versichert?",
+          answer: "Ja, wir haben eine vollständige Haftpflicht- und Betriebsversicherung für Ihre Sicherheit.",
+        },
+        {
+          question: "Welche Reinigungsmittel verwenden Sie?",
+          answer: "Wir verwenden professionelle, umweltfreundliche Reinigungsmittel, die für Menschen und Haustiere sicher sind.",
+        },
+        {
+          question: "Arbeiten Sie auch am Wochenende?",
+          answer: "Ja, wir sind 7 Tage die Woche verfügbar, auch an Wochenenden und Feiertagen.",
+        },
+      ],
+      faqSection: {
+        title: "Häufig Gestellte Fragen",
+        subtitle: "Hier finden Sie Antworten auf die häufigsten Fragen zu unseren Dienstleistungen",
+        moreQuestions: "Haben Sie weitere Fragen?",
+        callButton: "JETZT ANRUFEN",
+        whatsappButton: "WHATSAPP"
+      },
     },
     footer: {
-      description: "Professionelle Reinigungsdienste in Zeeland und Noord-Holland",
+      description: "Professionele Reinigungsdienste in Zeeland en Noord-Holland",
       services: {
         title: "Dienstleistungen",
         vacation: "Ferienhäuser",
@@ -315,12 +543,84 @@ const translations = {
         description: "Complete cleaning services for homes and businesses",
         features: ["One-time deep cleaning", "Regular maintenance", "Move-out cleaning", "Specialized cleaning"],
       },
+      detailed: [
+        {
+          key: "vacation",
+          features: [
+            "Deep cleaning of all rooms",
+            "Bathroom and kitchen disinfection",
+            "Washing bedding and towels",
+            "Inventory check",
+            "Key management",
+            "24/7 availability",
+            "Flexible times",
+          ],
+        },
+        {
+          key: "office",
+          features: [
+            "Daily cleaning",
+            "Sanitary facilities maintenance",
+            "Floor cleaning and maintenance",
+            "Windows and glasswork",
+            "Emptying trash bins",
+            "Kitchen and pantry cleaning",
+            "Preparing meeting rooms",
+            "Periodic deep cleaning",
+          ],
+        },
+        {
+          key: "general",
+          features: [
+            "Full house cleaning",
+            "Move-out cleaning",
+            "Post-construction cleaning",
+            "Spring cleaning",
+            "Carpet and upholstery cleaning",
+            "Windows inside and out",
+            "Oven and fridge cleaning",
+            "Periodic maintenance contract",
+          ],
+        },
+      ],
+      benefits: [
+        {
+          title: "Quality",
+          description: "High-quality cleaning services guaranteed.",
+        },
+        {
+          title: "Reliability",
+          description: "You can count on us, always on time and as agreed.",
+        },
+        {
+          title: "Flexibility",
+          description: "We adapt to your wishes and schedule.",
+        },
+      ],
     },
     about: {
       title: "Why Choose MasterClean?",
       description:
         "With over 10 years of experience in the cleaning industry, MasterClean is known for reliability, quality, and customer satisfaction. Our experienced team uses professional equipment and eco-friendly products.",
       experience: "Years Experience",
+      values: [
+        {
+          title: "Reliability",
+          description: "We keep our promises and always deliver what we say. Punctuality and consistency are our core values.",
+        },
+        {
+          title: "Quality",
+          description: "Only the best is good enough. We use professional equipment and high-quality, eco-friendly products.",
+        },
+        {
+          title: "Customer Satisfaction",
+          description: "Your satisfaction is our goal. We always go the extra mile to exceed your expectations.",
+        },
+        {
+          title: "Precision",
+          description: "Every detail counts. Our team is trained to thoroughly clean even the smallest corners and crevices.",
+        },
+      ],
       features: {
         insured: {
           title: "Fully Insured",
@@ -376,6 +676,48 @@ const translations = {
         title: "Thank you for your message!",
         message: "We have received your message and will contact you as soon as possible.",
         newMessage: "Send New Message",
+      },
+      serviceAreas: [
+        "Middelburg",
+        "Vlissingen",
+        "Goes",
+        "Terneuzen",
+        "Hulst",
+        "Domburg",
+        "Kamperland",
+        "Renesse",
+        "Breskens",
+        "Scheveningen",
+        "Katwijk",
+        "Kijkduin",
+        "Naaldwijk",
+        "Wassenaar",
+        "The Hague",
+      ],
+      faq: [
+        {
+          question: "How quickly can you start?",
+          answer: "In most cases, we can start within 24-48 hours, depending on availability and the type of service.",
+        },
+        {
+          question: "Are you insured?",
+          answer: "Yes, we have full liability and business insurance for your peace of mind.",
+        },
+        {
+          question: "What cleaning products do you use?",
+          answer: "We use professional, eco-friendly cleaning products that are safe for people and pets.",
+        },
+        {
+          question: "Can you work on weekends?",
+          answer: "Yes, we are available 7 days a week, including weekends and holidays.",
+        },
+      ],
+      faqSection: {
+        title: "Frequently Asked Questions",
+        subtitle: "Here you will find answers to the most frequently asked questions about our services",
+        moreQuestions: "Do you have other questions?",
+        callButton: "CALL NOW",
+        whatsappButton: "WHATSAPP"
       },
     },
     footer: {

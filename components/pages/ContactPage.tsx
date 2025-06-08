@@ -13,48 +13,13 @@ interface ContactPageProps {
   searchParams: { lang?: string }
 }
 
-// Move static arrays outside the component for performance
-const serviceAreas = [
-  "Middelburg",
-  "Vlissingen",
-  "Goes",
-  "Terneuzen",
-  "Hulst",
-  "Domburg",
-  "Kamperland",
-  "Renesse",
-  "Breskens",
-  "Scheveningen",
-  "Katwijk",
-  "Kijkduin",
-  "Naaldwijk",
-  "Wassenaar",
-  "Den Haag",
-]
-
-const faqItems = [
-  {
-    question: "Hoe snel kunnen jullie beginnen?",
-    answer:
-      "In de meeste gevallen kunnen wij binnen 24-48 uur starten, afhankelijk van de beschikbaarheid en het type dienst.",
-  },
-  {
-    question: "Zijn jullie verzekerd?",
-    answer: "Ja, wij hebben een volledige WA-verzekering en bedrijfsverzekering voor uw gemoedsrust.",
-  },
-  {
-    question: "Welke schoonmaakmiddelen gebruiken jullie?",
-    answer:
-      "Wij gebruiken professionele, milieuvriendelijke schoonmaakmiddelen die veilig zijn voor mensen en huisdieren.",
-  },
-  {
-    question: "Kunnen jullie ook in het weekend werken?",
-    answer: "Ja, wij zijn 7 dagen per week beschikbaar, inclusief weekenden en feestdagen.",
-  },
-]
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 // Memoized CardList for FAQ
-const FAQCardList = memo(function FAQCardList({ items }: { items: any[] }) {
+const FAQCardList = memo(function FAQCardList({ items }: { items: FAQItem[] }) {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {items.map((item, index) => (
@@ -72,6 +37,12 @@ const FAQCardList = memo(function FAQCardList({ items }: { items: any[] }) {
 export default function ContactPage({ searchParams }: ContactPageProps) {
   const lang = searchParams.lang || "nl"
   const t = getTranslations(lang)
+  
+  // Get service areas from translations
+  const serviceAreas = t.contact.serviceAreas || []
+  
+  // Get FAQ items from translations
+  const faqItems = t.contact.faq || []
 
   const [showAppointmentModal, setShowAppointmentModal] = useState(false)
   const [isSubmittingAppointment, setIsSubmittingAppointment] = useState(false)
@@ -81,7 +52,8 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
     error?: string
   } | null>(null)
 
-  // Remove all merge conflict markers and keep the correct, unified code:
+  // Remove unused variables
+
   const contactMethods = [
     {
       icon: Phone,
@@ -422,7 +394,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             <div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-6">Steden waar wij actief zijn:</h3>
               <div className="grid grid-cols-2 gap-4">
-                {serviceAreas.map((city, index) => (
+                {serviceAreas.map((city: string, index: number) => (
                   <div key={index} className="flex items-center space-x-3">
                     <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0" />
                     <span className="text-gray-700">{city}</span>
@@ -474,20 +446,20 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Veelgestelde Vragen</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.contact.faqSection.title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hier vindt u antwoorden op de meest gestelde vragen over onze diensten
+              {t.contact.faqSection.subtitle}
             </p>
           </div>
 
           <FAQCardList items={faqItems} />
           <div className="text-center mt-12">
-            <p className="text-lg text-gray-600 mb-6">Heeft u nog andere vragen?</p>
+            <p className="text-lg text-gray-600 mb-6">{t.contact.faqSection.moreQuestions}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
                 <a href="tel:+31850805636">
                   <Phone className="w-5 h-5 mr-2" />
-                  BEL NU
+                  {t.contact.faqSection.callButton}
                 </a>
               </Button>
               <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white font-bold" asChild>
@@ -497,7 +469,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   rel="noopener noreferrer"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  WHATSAPP VRAAG
+                  {t.contact.faqSection.whatsappButton}
                 </a>
               </Button>
             </div>

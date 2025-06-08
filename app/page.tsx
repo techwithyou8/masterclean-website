@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
+import type { Metadata } from "next"
 import { Suspense } from "react"
 import Hero from "@/components/Hero"
 import Services from "@/components/Services"
 import About from "@/components/About"
 import Contact from "@/components/Contact"
 import LayoutWrapper from "@/components/LayoutWrapper"
+import { PageLoadingSpinner } from "@/components/LoadingSpinner"
 import { getTranslations } from "@/lib/translations"
 
 export const metadata: Metadata = {
@@ -21,10 +23,14 @@ export const metadata: Metadata = {
 }
 
 interface HomeProps {
+  searchParams: Promise<{ lang?: string }>
+}
+
+interface HomeContentProps {
   searchParams: { lang?: string }
 }
 
-function HomeContent({ searchParams }: HomeProps) {
+async function HomeContent({ searchParams }: HomeContentProps) {
   const lang = searchParams.lang || "nl"
   const t = getTranslations(lang)
 
@@ -38,11 +44,14 @@ function HomeContent({ searchParams }: HomeProps) {
   )
 }
 
-export default function Home({ searchParams }: HomeProps) {
+export default async function Home({ searchParams }: HomeProps) {
+  const resolvedSearchParams = await searchParams
+  const lang = resolvedSearchParams.lang || "nl"
+  
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LayoutWrapper>
-        <HomeContent searchParams={searchParams} />
+    <Suspense fallback={<PageLoadingSpinner />}>
+      <LayoutWrapper lang={lang}>
+        <HomeContent searchParams={resolvedSearchParams} />
       </LayoutWrapper>
     </Suspense>
   )

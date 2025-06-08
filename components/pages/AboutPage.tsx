@@ -1,7 +1,7 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Shield, Clock, Users, Award, CheckCircle, Star, Heart, Target, Phone } from "lucide-react"
+import { Shield, Clock, Users, Award, Phone } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { getTranslations } from "@/lib/translations"
@@ -11,25 +11,48 @@ interface AboutPageProps {
   searchParams: { lang?: string }
 }
 
+interface ValueItem {
+  title: string;
+  description: string;
+}
+interface FeatureItem {
+  icon: React.ElementType;
+  titleKey: string;
+  descKey: string;
+}
+
 // Memoized CardList for values and features
-const CardList = memo(function CardList({ items, type, t }: { items: any[]; type: "values" | "features"; t: any }) {
+const CardList = memo(function CardList<
+  T extends ValueItem | FeatureItem
+>({ items, type, t }: { items: T[]; type: "values" | "features"; t: Record<string, unknown> }) {
   return (
     <div className={`grid ${type === "values" ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-2"} gap-8`}>
-      {items.map((item, index) => (
-        <Card key={index} className={type === "values" ? "text-center border-0 shadow-lg hover:shadow-xl transition-shadow" : "border-0 shadow-lg hover:shadow-xl transition-shadow"}>
-          <CardContent className="p-8">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <item.icon className="w-8 h-8 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              {type === "values" ? item.title : t.about.features[item.titleKey].title}
-            </h3>
-            <p className="text-gray-600">
-              {type === "values" ? item.description : t.about.features[item.descKey].description}
-            </p>
-          </CardContent>
-        </Card>
-      ))}
+      {items.map((item, index) => {
+        if (type === "values") {
+          const value = item as ValueItem;
+          return (
+            <Card key={index} className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
+                <p className="text-gray-600">{value.description}</p>
+              </CardContent>
+            </Card>
+          );
+        } else {
+          const feature = item as FeatureItem;
+          return (
+            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <feature.icon className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{t.about && typeof t.about === 'object' && 'features' in t.about && feature.titleKey in (t.about.features as Record<string, any>) ? (t.about.features as Record<string, any>)[feature.titleKey].title : ''}</h3>
+                <p className="text-gray-600">{t.about && typeof t.about === 'object' && 'features' in t.about && feature.descKey in (t.about.features as Record<string, any>) ? (t.about.features as Record<string, any>)[feature.descKey].description : ''}</p>
+              </CardContent>
+            </Card>
+          );
+        }
+      })}
     </div>
   )
 })
@@ -61,31 +84,7 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
     },
   ]
 
-  const values = [
-    {
-      icon: CheckCircle,
-      title: "Betrouwbaarheid",
-      description:
-        "Wij staan voor onze afspraken en leveren altijd wat we beloven. Punctualiteit en consistentie zijn onze kernwaarden.",
-    },
-    {
-      icon: Star,
-      title: "Kwaliteit",
-      description:
-        "Alleen het beste is goed genoeg. Wij gebruiken professionele apparatuur en hoogwaardige, milieuvriendelijke producten.",
-    },
-    {
-      icon: Heart,
-      title: "Klanttevredenheid",
-      description: "Uw tevredenheid is ons doel. Wij gaan altijd de extra mijl om uw verwachtingen te overtreffen.",
-    },
-    {
-      icon: Target,
-      title: "Precisie",
-      description:
-        "Elk detail telt. Ons team is getraind om ook de kleinste hoekjes en gaatjes grondig schoon te maken.",
-    },
-  ]
+  const values = t.about.values
 
   const stats = [
     { number: "500+", label: t.about.experience },

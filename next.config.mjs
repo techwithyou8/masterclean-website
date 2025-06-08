@@ -14,7 +14,6 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    optimizeFonts: true,
     scrollRestoration: true,
   },
   // Enable gzip and Brotli compression for static assets
