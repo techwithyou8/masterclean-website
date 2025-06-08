@@ -5,7 +5,7 @@ const translations = {
       services: "Diensten",
       about: "Over Ons",
       contact: "Contact",
-      callNow: "Bel Nu",
+      callNow: "Bel Nu Direct",
     },
     hero: {
       title: "Professionele Schoonmaakdiensten in Zeeland & Noord-Holland",
@@ -240,7 +240,7 @@ const translations = {
         title: "Veelgestelde Vragen",
         subtitle: "Hier vindt u antwoorden op de meest gestelde vragen over onze diensten",
         moreQuestions: "Heeft u nog andere vragen?",
-        callButton: "BEL NU",
+        callButton: "BEL NU DIRECT",
         whatsappButton: "WHATSAPP"
       },
       contactMethods: {
@@ -305,7 +305,7 @@ const translations = {
     },
     footer: {
       description: "Professionele schoonmaakdiensten in Zeeland en Noord-Holland",
-      callButton: "BEL NU",
+      callButton: "BEL NU DIRECT",
       services: {
         title: "Diensten",
         vacation: "Vakantiehuizen",
