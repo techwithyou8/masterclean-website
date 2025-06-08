@@ -24,9 +24,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-<<<<<<< HEAD
 next-env.d.ts
-.env
-=======
-next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
 >>>>>>> b1ce85d (Initial commit)

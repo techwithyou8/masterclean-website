@@ -80,8 +80,8 @@ export default function Hero({ translations, lang }: HeroProps) {
                   <span className="text-orange-600 text-2xl">⚡</span>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Professionele Service</div>
-                  <div className="text-sm text-gray-600">Snel, betrouwbaar & grondig!</div>
+                  <div className="font-semibold text-gray-900">{translations.hero.features.professional.title}</div>
+                  <div className="text-sm text-gray-600">{translations.hero.features.professional.description}</div>
                 </div>
               </div>
             </div>

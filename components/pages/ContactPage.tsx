@@ -201,7 +201,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b">
-              <h2 className="text-2xl font-bold text-gray-900">{t.contact.team.appointment.title}</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t.contact.appointmentForm.title}</h2>
               <button onClick={() => setShowAppointmentModal(false)} className="text-gray-400 hover:text-gray-600" title="Sluiten">
                 <X className="w-6 h-6" />
               </button>
@@ -231,27 +231,27 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="appointment-name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Naam *
+                      {t.contact.appointmentForm.name} *
                     </label>
                     <Input
                       id="appointment-name"
                       name="name"
                       type="text"
                       required
-                      placeholder="Uw volledige naam"
+                      placeholder={t.contact.appointmentForm.namePlaceholder}
                       disabled={isSubmittingAppointment}
                     />
                   </div>
                   <div>
                     <label htmlFor="appointment-phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Telefoonnummer *
+                      {t.contact.appointmentForm.phone} *
                     </label>
                     <Input
                       id="appointment-phone"
                       name="phone"
                       type="tel"
                       required
-                      placeholder="+31 6 12345678"
+                      placeholder={t.contact.appointmentForm.phonePlaceholder}
                       disabled={isSubmittingAppointment}
                     />
                   </div>
@@ -259,14 +259,14 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
 
                 <div>
                   <label htmlFor="appointment-email" className="block text-sm font-medium text-gray-700 mb-2">
-                    E-mailadres *
+                    {t.contact.appointmentForm.email} *
                   </label>
                   <Input
                     id="appointment-email"
                     name="email"
                     type="email"
                     required
-                    placeholder="uw.email@voorbeeld.nl"
+                    placeholder={t.contact.appointmentForm.emailPlaceholder}
                     disabled={isSubmittingAppointment}
                   />
                 </div>
@@ -274,7 +274,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="appointment-date" className="block text-sm font-medium text-gray-700 mb-2">
-                      Gewenste Datum *
+                      {t.contact.appointmentForm.preferredDate} *
                     </label>
                     <Input
                       id="appointment-date"
@@ -287,7 +287,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                   </div>
                   <div>
                     <label htmlFor="appointment-time" className="block text-sm font-medium text-gray-700 mb-2">
-                      Gewenste Tijd *
+                      {t.contact.appointmentForm.preferredTime} *
                     </label>
                     <Input
                       id="appointment-time"
@@ -301,7 +301,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
 
                 <div>
                   <label htmlFor="appointment-service" className="block text-sm font-medium text-gray-700 mb-2">
-                    Type Dienst *
+                    {t.contact.appointmentForm.serviceType} *
                   </label>
                   <select
                     id="appointment-service"
@@ -310,38 +310,38 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                     disabled={isSubmittingAppointment}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   >
-                    <option value="">Selecteer een dienst</option>
-                    <option value="vakantiehuizen">Vakantiehuizen Schoonmaken</option>
-                    <option value="kantoor">Kantoorschoonmaak</option>
-                    <option value="woning">Woningschoonmaak</option>
-                    <option value="verhuizing">Verhuisschoonmaak</option>
-                    <option value="eenmalig">Eenmalige Schoonmaak</option>
-                    <option value="anders">Anders (specificeer in bericht)</option>
+                    <option value="">{t.contact.appointmentForm.serviceTypePlaceholder}</option>
+                    <option value="vakantiehuizen">{t.contact.appointmentForm.services.vacation}</option>
+                    <option value="kantoor">{t.contact.appointmentForm.services.office}</option>
+                    <option value="woning">{t.contact.appointmentForm.services.residential}</option>
+                    <option value="verhuizing">{t.contact.appointmentForm.services.moving}</option>
+                    <option value="eenmalig">{t.contact.appointmentForm.services.oneTime}</option>
+                    <option value="anders">{t.contact.appointmentForm.services.other}</option>
                   </select>
                 </div>
 
                 <div>
                   <label htmlFor="appointment-address" className="block text-sm font-medium text-gray-700 mb-2">
-                    Adres
+                    {t.contact.appointmentForm.address}
                   </label>
                   <Input
                     id="appointment-address"
                     name="address"
                     type="text"
-                    placeholder="Straat, huisnummer, postcode, plaats"
+                    placeholder={t.contact.appointmentForm.addressPlaceholder}
                     disabled={isSubmittingAppointment}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="appointment-message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Aanvullende Informatie
+                    {t.contact.appointmentForm.additionalInfo}
                   </label>
                   <Textarea
                     id="appointment-message"
                     name="message"
                     rows={4}
-                    placeholder="Vertel ons meer over uw wensen, grootte van de ruimte, speciale eisen, etc."
+                    placeholder={t.contact.appointmentForm.additionalInfoPlaceholder}
                     disabled={isSubmittingAppointment}
                   />
                 </div>
@@ -354,7 +354,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                     disabled={isSubmittingAppointment}
                     className="flex-1"
                   >
-                    Annuleren
+                    {t.contact.appointmentForm.cancel}
                   </Button>
                   <Button
                     type="submit"
@@ -364,10 +364,10 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                     {isSubmittingAppointment ? (
                       <div className="flex items-center space-x-2">
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Versturen...</span>
+                        <span>{t.contact.appointmentForm.submitting}</span>
                       </div>
                     ) : (
-                      "Plan Afspraak"
+                      t.contact.appointmentForm.submit
                     )}
                   </Button>
                 </div>
@@ -425,18 +425,18 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
             </div>
             <div className="bg-gray-100 rounded-2xl p-8 text-center">
               <Clock className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">Openingstijden</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4">{t.contact.businessHours.title}</h3>
               <div className="space-y-2 text-gray-700">
                 <div className="flex justify-between">
-                  <span>Maandag - Zaterdag:</span>
-                  <span>09:00 - 17:00</span>
+                  <span>{t.contact.businessHours.weekdays}</span>
+                  <span>{t.contact.businessHours.weekdaysTime}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Zondag:</span>
-                  <span>Gesloten</span>
+                  <span>{t.contact.businessHours.sunday}</span>
+                  <span>{t.contact.businessHours.sundayStatus}</span>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mt-4">Voor spoedgevallen zijn wij 24/7 bereikbaar</p>
+              <p className="text-sm text-gray-600 mt-4">{t.contact.businessHours.emergency}</p>
             </div>
           </div>
         </div>

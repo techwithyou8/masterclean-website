@@ -22,6 +22,12 @@ const translations = {
         title: "100% Tevredenheidsgarantie",
         subtitle: "Niet tevreden? Geld terug!",
       },
+      features: {
+        professional: {
+          title: "Professionele Service",
+          description: "Snel, betrouwbaar & grondig!"
+        }
+      }
     },
     services: {
       title: "Onze Schoonmaakdiensten",
@@ -260,6 +266,42 @@ const translations = {
           action: "Plan Afspraak"
         }
       },
+      appointmentForm: {
+        title: "Plan Een Afspraak",
+        name: "Naam",
+        namePlaceholder: "Uw volledige naam",
+        phone: "Telefoonnummer",
+        phonePlaceholder: "+31 6 12345678",
+        email: "E-mailadres",
+        emailPlaceholder: "uw.email@voorbeeld.nl",
+        preferredDate: "Gewenste Datum",
+        preferredTime: "Gewenste Tijd",
+        serviceType: "Type Dienst",
+        serviceTypePlaceholder: "Selecteer een dienst",
+        address: "Adres",
+        addressPlaceholder: "Straat, huisnummer, postcode, plaats",
+        additionalInfo: "Aanvullende Informatie",
+        additionalInfoPlaceholder: "Vertel ons meer over uw wensen, grootte van de ruimte, speciale eisen, etc.",
+        cancel: "Annuleren",
+        submit: "Plan Afspraak",
+        submitting: "Versturen...",
+        services: {
+          vacation: "Vakantiehuizen Schoonmaken",
+          office: "Kantoorschoonmaak",
+          residential: "Woningschoonmaak",
+          moving: "Verhuisschoonmaak",
+          oneTime: "Eenmalige Schoonmaak",
+          other: "Anders (specificeer in bericht)"
+        }
+      },
+      businessHours: {
+        title: "Openingstijden",
+        weekdays: "Maandag - Zaterdag:",
+        weekdaysTime: "09:00 - 17:00",
+        sunday: "Zondag:",
+        sundayStatus: "Gesloten",
+        emergency: "Voor spoedgevallen zijn wij 24/7 bereikbaar"
+      },
     },
     footer: {
       description: "Professionele schoonmaakdiensten in Zeeland en Noord-Holland",
@@ -303,6 +345,12 @@ const translations = {
         title: "100% Zufriedenheitsgarantie",
         subtitle: "Nicht zufrieden? Geld zurück!",
       },
+      features: {
+        professional: {
+          title: "Professioneller Service",
+          description: "Schnell, zuverlässig & gründlich!"
+        }
+      }
     },
     services: {
       title: "Unsere Reinigungsdienste",
@@ -536,6 +584,42 @@ const translations = {
           action: "Termin Planen"
         }
       },
+      appointmentForm: {
+        title: "Termin Vereinbaren",
+        name: "Name",
+        namePlaceholder: "Ihr vollständiger Name",
+        phone: "Telefonnummer",
+        phonePlaceholder: "+31 6 12345678",
+        email: "E-Mail-Adresse",
+        emailPlaceholder: "ihre.email@beispiel.de",
+        preferredDate: "Gewünschtes Datum",
+        preferredTime: "Gewünschte Zeit",
+        serviceType: "Art der Dienstleistung",
+        serviceTypePlaceholder: "Wählen Sie eine Dienstleistung",
+        address: "Adresse",
+        addressPlaceholder: "Straße, Hausnummer, Postleitzahl, Ort",
+        additionalInfo: "Zusätzliche Informationen",
+        additionalInfoPlaceholder: "Erzählen Sie uns mehr über Ihre Wünsche, Größe des Raums, besondere Anforderungen, etc.",
+        cancel: "Abbrechen",
+        submit: "Termin Planen",
+        submitting: "Senden...",
+        services: {
+          vacation: "Ferienhäuser Reinigen",
+          office: "Büroreinigung",
+          residential: "Wohnungsreinigung",
+          moving: "Umzugsreinigung",
+          oneTime: "Einmalige Reinigung",
+          other: "Andere (spezifizieren Sie in der Nachricht)"
+        }
+      },
+      businessHours: {
+        title: "Öffnungszeiten",
+        weekdays: "Montag - Samstag:",
+        weekdaysTime: "09:00 - 17:00",
+        sunday: "Sonntag:",
+        sundayStatus: "Geschlossen",
+        emergency: "Für Notfälle sind wir 24/7 erreichbar"
+      },
     },
     footer: {
       description: "Professionele Reinigungsdienste in Zeeland en Noord-Holland",
@@ -579,6 +663,12 @@ const translations = {
         title: "100% Satisfaction Guarantee",
         subtitle: "Not satisfied? Money back!",
       },
+      features: {
+        professional: {
+          title: "Professional Service",
+          description: "Fast, reliable & thorough!"
+        }
+      }
     },
     services: {
       title: "Our Cleaning Services",
@@ -810,6 +900,42 @@ const translations = {
           subtitle: "For a personal consultation",
           action: "Schedule Appointment"
         }
+      },
+      appointmentForm: {
+        title: "Schedule Appointment",
+        name: "Name",
+        namePlaceholder: "Your full name",
+        phone: "Phone Number",
+        phonePlaceholder: "+31 6 12345678",
+        email: "Email Address",
+        emailPlaceholder: "your.email@example.com",
+        preferredDate: "Preferred Date",
+        preferredTime: "Preferred Time",
+        serviceType: "Service Type",
+        serviceTypePlaceholder: "Select a service",
+        address: "Address",
+        addressPlaceholder: "Street, house number, postal code, city",
+        additionalInfo: "Additional Information",
+        additionalInfoPlaceholder: "Tell us more about your needs, room size, special requirements, etc.",
+        cancel: "Cancel",
+        submit: "Schedule Appointment",
+        submitting: "Sending...",
+        services: {
+          vacation: "Vacation Home Cleaning",
+          office: "Office Cleaning",
+          residential: "Residential Cleaning",
+          moving: "Move-out Cleaning",
+          oneTime: "One-time Cleaning",
+          other: "Other (specify in message)"
+        }
+      },
+      businessHours: {
+        title: "Business Hours",
+        weekdays: "Monday - Saturday:",
+        weekdaysTime: "09:00 - 17:00",
+        sunday: "Sunday:",
+        sundayStatus: "Closed",
+        emergency: "For emergencies we are available 24/7"
       },
     },
     footer: {
