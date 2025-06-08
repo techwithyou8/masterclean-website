@@ -19,11 +19,11 @@ export default function Footer({ translations, lang }: FooterProps) {
           <div className="space-y-4">
             <div className="flex items-center">
               <Image
-                src="/masterclean-logo-updated.png"
+                src="/masterclean-logo-final.png"
                 alt="MasterClean"
-                width={160}
-                height={40}
-                className="h-10 w-auto object-contain brightness-0 invert"
+                width={320}
+                height={80}
+                className="h-18 w-auto object-contain"
               />
             </div>
             <div className="space-y-2">

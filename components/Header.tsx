@@ -28,15 +28,15 @@ export default function Header({ translations, lang }: HeaderProps) {
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-28">
           {/* Logo */}
           <Link href={`/?lang=${lang}`} className="flex items-center space-x-2">
             <Image
-              src="/masterclean-logo-updated.png"
+              src="/masterclean-logo-final.png"
               alt="MasterClean"
-              width={200}
-              height={50}
-              className="h-12 w-auto object-contain"
+              width={400}
+              height={120}
+              className="h-20 w-auto object-contain"
               priority
             />
           </Link>
