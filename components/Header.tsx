@@ -32,7 +32,7 @@ export default function Header({ translations, lang }: HeaderProps) {
           {/* Logo */}
           <Link href={`/?lang=${lang}`} className="flex items-center space-x-2">
             <Image
-              src="/masterclean-logo-final.png"
+              src="/masterclean-logo-updated.png"
               alt="MasterClean"
               width={200}
               height={50}

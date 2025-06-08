@@ -19,7 +19,7 @@ export default function Footer({ translations, lang }: FooterProps) {
           <div className="space-y-4">
             <div className="flex items-center">
               <Image
-                src="/masterclean-logo-final.png"
+                src="/masterclean-logo-updated.png"
                 alt="MasterClean"
                 width={160}
                 height={40}
