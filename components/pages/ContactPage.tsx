@@ -81,9 +81,9 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
     },
     {
       icon: Calendar,
-      title: "Plan Een Afspraak",
-      description: "Voor een persoonlijk gesprek",
-      action: "Plan Afspraak",
+      title: t.contact.team.appointment.title,
+      description: t.contact.team.appointment.subtitle,
+      action: t.contact.team.appointment.action,
       link: "#",
       color: "purple",
       onClick: () => setShowAppointmentModal(true),
@@ -201,7 +201,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b">
-              <h2 className="text-2xl font-bold text-gray-900">Plan Een Afspraak</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t.contact.team.appointment.title}</h2>
               <button onClick={() => setShowAppointmentModal(false)} className="text-gray-400 hover:text-gray-600" title="Sluiten">
                 <X className="w-6 h-6" />
               </button>
@@ -392,7 +392,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Steden waar wij actief zijn:</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">{t.contact.serviceArea.citiesTitle}</h3>
               <div className="grid grid-cols-2 gap-4">
                 {serviceAreas.map((city: string, index: number) => (
                   <div key={index} className="flex items-center space-x-3">

@@ -97,19 +97,19 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
     {
       name: "Mike Hendrix",
       role: "Eigenaar & Operationeel Manager",
-      experience: "10 jaar ervaring",
+      experience: `10 ${t.contact.team.experience}`,
       image: "/team-michael.png",
     },
     {
       name: "Jan Pietersen",
       role: "Teamleider Kantoorschoonmaak",
-      experience: "8 jaar ervaring",
+      experience: `8 ${t.contact.team.experience}`,
       image: "/placeholder-user.jpg",
     },
     {
       name: "Sophie de Vries",
       role: "Specialist Vakantiehuizen",
-      experience: "6 jaar ervaring",
+      experience: `6 ${t.contact.team.experience}`,
       image: "/team-sophie.png",
     },
   ]

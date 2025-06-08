@@ -182,6 +182,13 @@ const translations = {
         messagePlaceholder: "Vertel ons over uw schoonmaakbehoeften...",
         send: "Verstuur Bericht",
         sending: "Versturen...",
+        fileUpload: {
+          label: "Bestanden Toevoegen (Optioneel)",
+          dragText: "Sleep bestanden hierheen of",
+          clickText: "klik om te selecteren",
+          allowedFiles: "Toegestaan: Afbeeldingen, PDF, Word documenten (max 10MB per bestand)",
+          troubleText: "Problemen met het formulier?"
+        }
       },
       success: {
         title: "Bedankt voor uw bericht!",
@@ -236,7 +243,8 @@ const translations = {
       },
       serviceArea: {
         title: "Ons Werkgebied",
-        subtitle: "Wij bieden onze diensten aan in de volgende gebieden"
+        subtitle: "Wij bieden onze diensten aan in de volgende gebieden",
+        citiesTitle: "Steden waar wij actief zijn:"
       },
       values: {
         title: "Onze Waarden",
@@ -244,7 +252,13 @@ const translations = {
       },
       team: {
         title: "Ons Team",
-        subtitle: "Maak kennis met de professionals die ervoor zorgen dat uw ruimtes altijd perfect schoon zijn"
+        subtitle: "Maak kennis met de professionals die ervoor zorgen dat uw ruimtes altijd perfect schoon zijn",
+        experience: "jaar ervaring",
+        appointment: {
+          title: "Plan Een Afspraak",
+          subtitle: "Voor een persoonlijk gesprek",
+          action: "Plan Afspraak"
+        }
       },
     },
     footer: {
@@ -444,6 +458,13 @@ const translations = {
         messagePlaceholder: "Erzählen Sie uns von Ihren Reinigungsanforderungen...",
         send: "Nachricht Senden",
         sending: "Senden...",
+        fileUpload: {
+          label: "Dateien Hinzufügen (Optional)",
+          dragText: "Dateien hierher ziehen oder",
+          clickText: "klicken zum Auswählen",
+          allowedFiles: "Erlaubt: Bilder, PDF, Word Dokumente (max 10MB pro Datei)",
+          troubleText: "Probleme mit dem Formular?"
+        }
       },
       success: {
         title: "Vielen Dank für Ihre Nachricht!",
@@ -498,7 +519,8 @@ const translations = {
       },
       serviceArea: {
         title: "Unser Arbeitsgebiet",
-        subtitle: "Wir bieten unsere Dienstleistungen in den folgenden Gebieten an"
+        subtitle: "Wir bieten unsere Dienstleistungen in den folgenden Gebieten an",
+        citiesTitle: "Städte in denen wir aktiv sind:"
       },
       values: {
         title: "Unsere Werte",
@@ -506,7 +528,13 @@ const translations = {
       },
       team: {
         title: "Unser Team",
-        subtitle: "Lernen Sie die Profis kennen, die dafür sorgen, dass Ihre Räume immer perfekt sauber sind"
+        subtitle: "Lernen Sie die Profis kennen, die dafür sorgen, dass Ihre Räume immer perfekt sauber sind",
+        experience: "Jahre Erfahrung",
+        appointment: {
+          title: "Termin Vereinbaren",
+          subtitle: "Für ein persönliches Gespräch",
+          action: "Termin Planen"
+        }
       },
     },
     footer: {
@@ -705,6 +733,13 @@ const translations = {
         messagePlaceholder: "Tell us about your cleaning needs...",
         send: "Send Message",
         sending: "Sending...",
+        fileUpload: {
+          label: "Add Files (Optional)",
+          dragText: "Drag files here or",
+          clickText: "click to select",
+          allowedFiles: "Allowed: Images, PDF, Word documents (max 10MB per file)",
+          troubleText: "Problems with the form?"
+        }
       },
       success: {
         title: "Thank you for your message!",
@@ -759,7 +794,8 @@ const translations = {
       },
       serviceArea: {
         title: "Our Service Area",
-        subtitle: "We provide our services in the following areas"
+        subtitle: "We provide our services in the following areas",
+        citiesTitle: "Cities where we are active:"
       },
       values: {
         title: "Our Values",
@@ -767,7 +803,13 @@ const translations = {
       },
       team: {
         title: "Our Team",
-        subtitle: "Meet the professionals who ensure your spaces are always perfectly clean"
+        subtitle: "Meet the professionals who ensure your spaces are always perfectly clean",
+        experience: "years experience",
+        appointment: {
+          title: "Schedule Appointment",
+          subtitle: "For a personal consultation",
+          action: "Schedule Appointment"
+        }
       },
     },
     footer: {

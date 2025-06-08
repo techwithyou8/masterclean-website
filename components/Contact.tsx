@@ -397,7 +397,7 @@ export default function Contact({ translations }: ContactProps) {
                   {/* File Upload Section */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Bestanden Toevoegen (Optioneel)
+                      {translations.contact.form.fileUpload.label}
                     </label>
                     <div
                       className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
@@ -410,18 +410,18 @@ export default function Contact({ translations }: ContactProps) {
                     >
                       <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                       <p className="text-gray-600 mb-2">
-                        Sleep bestanden hierheen of{" "}
+                        {translations.contact.form.fileUpload.dragText}{" "}
                         <button
                           type="button"
                           onClick={() => fileInputRef.current?.click()}
                           className="text-blue-600 hover:text-blue-700 font-medium"
                           disabled={isSubmitting}
                         >
-                          klik om te selecteren
+                          {translations.contact.form.fileUpload.clickText}
                         </button>
                       </p>
                       <p className="text-xs text-gray-500">
-                        Toegestaan: Afbeeldingen, PDF, Word documenten (max 10MB per bestand)
+                        {translations.contact.form.fileUpload.allowedFiles}
                       </p>
                       <input
                         ref={fileInputRef}
@@ -504,7 +504,7 @@ export default function Contact({ translations }: ContactProps) {
                 {/* Fallback contact info */}
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                   <p className="text-sm text-gray-600 text-center">
-                    <strong>Problemen met het formulier?</strong>
+                    <strong>{translations.contact.form.fileUpload.troubleText}</strong>
                     <br />
                     Bel ons direct op{" "}
                     <a href="tel:+31850805636" className="text-blue-600 hover:underline font-medium">
