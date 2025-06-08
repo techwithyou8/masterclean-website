@@ -1,3 +1,4 @@
+import React from "react"
 import Link from "next/link"
 import { Phone, Mail, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -34,11 +35,7 @@ export default function Footer({ translations, lang }: FooterProps) {
             <Button className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
               <a href="tel:+31850805636">
                 <Phone className="w-4 h-4 mr-2" />
-<<<<<<< HEAD
                 BEL NU
-=======
-                {translations.nav.callNow}
->>>>>>> b1ce85d (Initial commit)
               </a>
             </Button>
           </div>

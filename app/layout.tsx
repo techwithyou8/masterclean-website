@@ -6,6 +6,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mastercleanservice.nl'),
   title: "MasterClean - Professionele Schoonmaakdiensten",
   description: "Professionele schoonmaakdiensten voor vakantiehuizen, kantoren en woningen in Zeeland en Noord-Holland",
     generator: 'v0.dev'

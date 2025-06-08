@@ -1,4 +1,5 @@
 "use client"
+import React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Phone, ArrowRight } from "lucide-react"
@@ -36,11 +37,7 @@ export default function Hero({ translations, lang }: HeroProps) {
               >
                 <a href="tel:+31850805636">
                   <Phone className="w-5 h-5 mr-2" />
-<<<<<<< HEAD
-                  BEL NU DIRECT!
-=======
                   {translations.nav.callNow}
->>>>>>> b1ce85d (Initial commit)
                 </a>
               </Button>
             </div>
@@ -48,11 +45,11 @@ export default function Hero({ translations, lang }: HeroProps) {
             {/* Trust indicators */}
             <div className="flex items-center space-x-8 pt-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">500+</div>
+                <div className="text-3xl font-bold text-blue-600">460+</div>
                 <div className="text-sm text-gray-600">{translations.hero.stats.clients}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-orange-500">5★</div>
+                <div className="text-3xl font-bold text-orange-500">4.9★</div>
                 <div className="text-sm text-gray-600">{translations.hero.stats.rating}</div>
               </div>
               <div className="text-center">

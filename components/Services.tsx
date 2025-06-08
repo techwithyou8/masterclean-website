@@ -2,26 +2,16 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-<<<<<<< HEAD
-import { Home, Building, Sparkles, ArrowRight } from "lucide-react"
-=======
 import { Home, Building, Sparkles, ArrowRight, Phone } from "lucide-react"
->>>>>>> b1ce85d (Initial commit)
 import Image from "next/image"
 import Link from "next/link"
 
 interface ServicesProps {
   translations: any
-<<<<<<< HEAD
-}
-
-export default function Services({ translations }: ServicesProps) {
-=======
   lang?: string
 }
 
 export default function Services({ translations, lang = "nl" }: ServicesProps) {
->>>>>>> b1ce85d (Initial commit)
   const services = [
     {
       icon: Home,
@@ -86,24 +76,17 @@ export default function Services({ translations, lang = "nl" }: ServicesProps) {
                 </ul>
 
                 <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" asChild>
-<<<<<<< HEAD
-                  <Link href="/contact" data-phone-number="+31 (0)85 0805636">
-=======
                   <Link href={`/contact?lang=${lang}`} data-phone-number="+31 (0)85 0805636">
->>>>>>> b1ce85d (Initial commit)
                     {translations.services.cta}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </Button>
-<<<<<<< HEAD
-=======
                 <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold mt-2" asChild>
                   <a href="tel:+31850805636">
                     <Phone className="w-4 h-4 mr-2" />
                     {translations.nav.callNow}
                   </a>
                 </Button>
->>>>>>> b1ce85d (Initial commit)
               </CardContent>
             </Card>
           ))}

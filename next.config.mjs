@@ -7,8 +7,18 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Enable Next.js image optimization for better performance
+    unoptimized: false,
+    formats: ["image/webp", "image/avif"],
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
+  experimental: {
+    optimizeCss: true,
+    optimizeFonts: true,
+    scrollRestoration: true,
+  },
+  // Enable gzip and Brotli compression for static assets
+  compress: true,
 }
 
 export default nextConfig
