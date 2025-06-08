@@ -170,9 +170,9 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Onze Waarden</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.contact.values.title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Deze kernwaarden vormen de basis van alles wat wij doen en bepalen hoe wij onze klanten bedienen
+              {t.contact.values.subtitle}
             </p>
           </div>
           <CardList items={values} type="values" t={t} />
@@ -194,9 +194,9 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Ons Team</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.contact.team.title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Maak kennis met de professionals die ervoor zorgen dat uw ruimtes altijd perfect schoon zijn
+              {t.contact.team.subtitle}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">

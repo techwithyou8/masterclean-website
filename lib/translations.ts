@@ -230,9 +230,26 @@ const translations = {
         callButton: "BEL NU",
         whatsappButton: "WHATSAPP"
       },
+      contactMethods: {
+        title: "Verschillende Manieren Om Contact Op Te Nemen",
+        subtitle: "Kies de manier die het beste bij u past. Wij reageren altijd snel en professioneel"
+      },
+      serviceArea: {
+        title: "Ons Werkgebied",
+        subtitle: "Wij bieden onze diensten aan in de volgende gebieden"
+      },
+      values: {
+        title: "Onze Waarden",
+        subtitle: "Deze kernwaarden vormen de basis van alles wat wij doen en bepalen hoe wij onze klanten bedienen"
+      },
+      team: {
+        title: "Ons Team",
+        subtitle: "Maak kennis met de professionals die ervoor zorgen dat uw ruimtes altijd perfect schoon zijn"
+      },
     },
     footer: {
       description: "Professionele schoonmaakdiensten in Zeeland en Noord-Holland",
+      callButton: "BEL NU",
       services: {
         title: "Diensten",
         vacation: "Vakantiehuizen",
@@ -475,9 +492,26 @@ const translations = {
         callButton: "JETZT ANRUFEN",
         whatsappButton: "WHATSAPP"
       },
+      contactMethods: {
+        title: "Verschiedene Möglichkeiten, Uns Zu Kontaktieren",
+        subtitle: "Wählen Sie die Art, die am besten zu Ihnen passt. Wir antworten immer schnell und professionell"
+      },
+      serviceArea: {
+        title: "Unser Arbeitsgebiet",
+        subtitle: "Wir bieten unsere Dienstleistungen in den folgenden Gebieten an"
+      },
+      values: {
+        title: "Unsere Werte",
+        subtitle: "Diese Grundwerte bilden die Basis für alles was wir tun und bestimmen wie wir unsere Kunden bedienen"
+      },
+      team: {
+        title: "Unser Team",
+        subtitle: "Lernen Sie die Profis kennen, die dafür sorgen, dass Ihre Räume immer perfekt sauber sind"
+      },
     },
     footer: {
       description: "Professionele Reinigungsdienste in Zeeland en Noord-Holland",
+      callButton: "JETZT ANRUFEN",
       services: {
         title: "Dienstleistungen",
         vacation: "Ferienhäuser",
@@ -719,9 +753,26 @@ const translations = {
         callButton: "CALL NOW",
         whatsappButton: "WHATSAPP"
       },
+      contactMethods: {
+        title: "Different Ways To Contact Us",
+        subtitle: "Choose the way that suits you best. We always respond quickly and professionally"
+      },
+      serviceArea: {
+        title: "Our Service Area",
+        subtitle: "We provide our services in the following areas"
+      },
+      values: {
+        title: "Our Values",
+        subtitle: "These core values form the foundation of everything we do and determine how we serve our clients"
+      },
+      team: {
+        title: "Our Team",
+        subtitle: "Meet the professionals who ensure your spaces are always perfectly clean"
+      },
     },
     footer: {
       description: "Professional cleaning services in Zeeland and Noord-Holland",
+      callButton: "CALL NOW",
       services: {
         title: "Services",
         vacation: "Vacation Homes",

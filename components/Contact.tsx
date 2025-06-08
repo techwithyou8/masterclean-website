@@ -255,7 +255,7 @@ export default function Contact({ translations }: ContactProps) {
                     <h3 className="font-semibold text-gray-900 mb-2">{translations.contact.info.phone.title}</h3>
                     <p className="text-gray-600 mb-3">+31 (0)85 0805636</p>
                     <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
-                      <a href="tel:+31850805636">BEL NU</a>
+                      <a href="tel:+31850805636">{translations.footer.callButton}</a>
                     </Button>
                   </div>
                 </div>

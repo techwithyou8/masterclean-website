@@ -148,9 +148,9 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Verschillende Manieren Om Contact Op Te Nemen</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.contact.contactMethods.title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Kies de manier die het beste bij u past. Wij reageren altijd snel en professioneel
+              {t.contact.contactMethods.subtitle}
             </p>
           </div>
 
@@ -384,9 +384,9 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Ons Werkgebied</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.contact.serviceArea.title}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Wij bedienen klanten in heel Zeeland en Noord-Holland
+              {t.contact.serviceArea.subtitle}
             </p>
           </div>
 
