@@ -29,4 +29,18 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
->>>>>>> b1ce85d (Initial commit)
+
+# Performance analysis
+.next/analyze/
+analyze-results/
+
+# Service Worker cache
+sw-cache/
+
+# Test files
+test-email.js
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store

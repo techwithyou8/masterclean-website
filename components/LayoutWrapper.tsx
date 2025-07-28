@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import FloatingCallButton from "@/components/FloatingCallButton"
 import { getTranslations } from "@/lib/translations"
 
 interface LayoutWrapperProps {
@@ -18,6 +19,7 @@ export default function LayoutWrapper({ children, lang }: LayoutWrapperProps) {
         {children}
       </main>
       <Footer translations={translations} lang={lang} />
+      <FloatingCallButton />
     </div>
   )
 }

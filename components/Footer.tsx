@@ -12,20 +12,22 @@ interface FooterProps {
 
 export default function Footer({ translations, lang }: FooterProps) {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       {/* Main Footer Content */}
-      <div className="py-16">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className="py-12 sm:py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="sm:col-span-2 lg:col-span-1 space-y-6">
               <div className="flex items-center">
                 <Image
                   src="/mastercerclean-footer-logo.png"
                   alt="MasterCerClean"
                   width={240}
                   height={60}
-                  className="h-16 w-auto object-contain"
+                  className="h-12 sm:h-16 w-auto object-contain"
+                  loading="lazy"
+                  quality={85}
                 />
               </div>
               <div className="space-y-4">
@@ -38,10 +40,10 @@ export default function Footer({ translations, lang }: FooterProps) {
                 </div>
               </div>
               <Button 
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105" 
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto" 
                 asChild
               >
-                <a href="tel:+31850805636" className="flex items-center">
+                <a href="tel:+31850805636" className="flex items-center justify-center">
                   <Phone className="w-4 h-4 mr-2" />
                   {translations.footer.callButton}
                 </a>

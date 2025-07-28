@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { memo } from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -31,7 +31,7 @@ interface UploadedFile {
   id: string
 }
 
-export default function Contact({ translations }: ContactProps) {
+const Contact = memo(function Contact({ translations }: ContactProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitResult, setSubmitResult] = useState<{
     success: boolean
@@ -178,11 +178,11 @@ export default function Contact({ translations }: ContactProps) {
   }
 
   return (
-    <section id="contact" className="py-20 bg-blue-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">{translations.contact.title}</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">{translations.contact.subtitle}</p>
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{translations.contact.title}</h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">{translations.contact.subtitle}</p>
 
           {/* Debug Panel for Development */}
           {process.env.NODE_ENV === "development" && debugInfo && (
@@ -242,19 +242,19 @@ export default function Contact({ translations }: ContactProps) {
           )}
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid gap-6 lg:gap-8 max-w-6xl mx-auto lg:grid-cols-3">
           {/* Contact Info */}
-          <div className="space-y-6">
-            <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-orange-600" />
+          <div className="space-y-3 sm:space-y-4 lg:space-y-6 order-2 lg:order-1">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
+                    <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 mb-2">{translations.contact.info.phone.title}</h3>
-                    <p className="text-gray-600 mb-3">+31 (0)85 0805636</p>
-                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white font-bold" asChild>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">{translations.contact.info.phone.title}</h3>
+                    <p className="text-gray-600 mb-3 text-sm sm:text-base">+31 (0)85 0805636</p>
+                    <Button size="sm" className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-lg text-xs sm:text-sm px-3 py-2 transition-all duration-300 transform hover:scale-105" asChild>
                       <a href="tel:+31850805636">{translations.footer.callButton}</a>
                     </Button>
                   </div>
@@ -262,15 +262,15 @@ export default function Contact({ translations }: ContactProps) {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-blue-600" />
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center space-x-3 sm:space-x-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center shadow-md">
+                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{translations.contact.info.email.title}</h3>
-                    <a href="mailto:info@mastercleanservice.nl" className="text-gray-600 hover:text-blue-600">
+                  <div className="min-w-0">
+                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{translations.contact.info.email.title}</h3>
+                    <a href="mailto:info@mastercleanservice.nl" className="text-gray-600 hover:text-blue-600 transition-colors text-sm sm:text-base break-all">
                       info@mastercleanservice.nl
                     </a>
                   </div>
@@ -278,7 +278,7 @@ export default function Contact({ translations }: ContactProps) {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg">
+            <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -308,17 +308,17 @@ export default function Contact({ translations }: ContactProps) {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <Card className="border-0 shadow-xl">
-              <CardHeader>
-                <CardTitle className="text-2xl text-gray-900">{translations.contact.form.title}</CardTitle>
-                <p className="text-gray-600">Voeg foto's of documenten toe om uw vraag te verduidelijken</p>
+          <div className="lg:col-span-2 order-1 lg:order-2">
+            <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-sm">
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="text-xl sm:text-2xl text-gray-900">{translations.contact.form.title}</CardTitle>
+                <p className="text-gray-600 text-sm sm:text-base">Voeg foto's of documenten toe om uw vraag te verduidelijken</p>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-4 sm:p-6">
                 {/* Success/Error Messages */}
                 {submitResult && (
                   <div
-                    className={`mb-6 p-4 rounded-lg flex items-center space-x-3 ${
+                    className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl flex items-start space-x-3 ${
                       submitResult.success ? "bg-green-50 border border-green-200" : "bg-red-50 border border-red-200"
                     }`}
                   >
@@ -333,8 +333,8 @@ export default function Contact({ translations }: ContactProps) {
                   </div>
                 )}
 
-                <form id="contact-form" action={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                <form id="contact-form" action={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         {translations.contact.form.name} *
@@ -344,7 +344,7 @@ export default function Contact({ translations }: ContactProps) {
                         name="name"
                         type="text"
                         required
-                        className="w-full"
+                        className="w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-colors"
                         placeholder={translations.contact.form.namePlaceholder}
                         disabled={isSubmitting}
                       />
@@ -357,7 +357,7 @@ export default function Contact({ translations }: ContactProps) {
                         id="phone"
                         name="phone"
                         type="tel"
-                        className="w-full"
+                        className="w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-colors"
                         placeholder={translations.contact.form.phonePlaceholder}
                         disabled={isSubmitting}
                       />
@@ -373,7 +373,7 @@ export default function Contact({ translations }: ContactProps) {
                       name="email"
                       type="email"
                       required
-                      className="w-full"
+                      className="w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-colors"
                       placeholder={translations.contact.form.emailPlaceholder}
                       disabled={isSubmitting}
                     />
@@ -388,7 +388,7 @@ export default function Contact({ translations }: ContactProps) {
                       name="message"
                       required
                       rows={6}
-                      className="w-full"
+                      className="w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 transition-colors resize-none"
                       placeholder={translations.contact.form.messagePlaceholder}
                       disabled={isSubmitting}
                     />
@@ -523,4 +523,6 @@ export default function Contact({ translations }: ContactProps) {
       </div>
     </section>
   )
-}
+})
+
+export default Contact

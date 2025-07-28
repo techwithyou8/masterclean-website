@@ -13,6 +13,60 @@ body {
   }
 }
 
+/* Mobile-first optimizations */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+}
+
+/* Better touch targets for mobile */
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improved scrolling on mobile */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Better text readability on mobile */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Mobile-optimized gradients */
+  .mobile-gradient {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+  }
+}
+
+/* Focus styles for better accessibility */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  /* Better button hover states on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\:scale-105:hover {
+      transform: none;
+    }
+    
+    .hover\:shadow-xl:hover {
+      box-shadow: var(--tw-shadow);
+    }
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -85,6 +139,64 @@ body {
   }
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize font loading */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* Reduce layout shifts */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Hardware acceleration for animations */
+.transform,
+.hover\:scale-105:hover,
+.hover\:scale-110:hover,
+.animate-pulse,
+.animate-spin,
+.animate-bounce {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize transitions */
+.transition-all,
+.transition-colors,
+.transition-transform,
+.transition-shadow {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reduce repaint for gradients */
+.bg-gradient-to-r,
+.bg-gradient-to-br,
+.bg-gradient-to-t {
+  backface-visibility: hidden;
+}
+
+/* Optimize backdrop filters */
+.backdrop-blur-sm,
+.backdrop-blur-md {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  will-change: backdrop-filter;
+}
+
+/* Critical resource hints */
+@layer base {
+  html {
+    font-display: swap;
   }
 }
 

@@ -1,13 +1,22 @@
 import type { Metadata } from "next"
-import type { Metadata } from "next"
 import { Suspense } from "react"
+import dynamic from "next/dynamic"
 import Hero from "@/components/Hero"
-import Services from "@/components/Services"
-import About from "@/components/About"
-import Contact from "@/components/Contact"
 import LayoutWrapper from "@/components/LayoutWrapper"
 import { PageLoadingSpinner } from "@/components/LoadingSpinner"
+import { ServicesSkeleton, ContactSkeleton, AboutSkeleton } from "@/components/SkeletonComponents"
 import { getTranslations } from "@/lib/translations"
+
+// Dynamic imports for better code splitting and faster initial load
+const Services = dynamic(() => import("@/components/Services"), {
+  loading: () => <ServicesSkeleton />
+})
+const About = dynamic(() => import("@/components/About"), {
+  loading: () => <AboutSkeleton />
+})
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => <ContactSkeleton />
+})
 
 export const metadata: Metadata = {
   title: "MasterClean - Professionele Schoonmaakdiensten | Zeeland & Noord-Holland",
