@@ -87,7 +87,7 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
   const values = t.about.values
 
   const stats = [
-    { number: "460+", label: t.about.experience },
+    { number: "460+", label: t.hero.stats.clients },
     { number: "10+", label: t.about.experience },
     { number: "24/7", label: "Service Beschikbaar" },
     { number: "100%", label: t.about.features.quality.title },
