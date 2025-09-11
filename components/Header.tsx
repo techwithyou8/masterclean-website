@@ -34,12 +34,12 @@ export default function Header({ translations, lang }: HeaderProps) {
             <Image
               src="/masterclean-logo-transparent.png"
               alt="MasterClean"
-              width={240}
-              height={60}
-              className="h-10 sm:h-12 w-auto object-contain"
+              width={216}
+              height={54}
+              className="h-9 sm:h-11 w-auto object-contain"
               priority
               quality={90}
-              sizes="(min-width: 1024px) 192px, (min-width: 640px) 160px, 140px"
+              sizes="(min-width: 1024px) 176px, (min-width: 640px) 152px, 136px"
             />
           </Link>
 

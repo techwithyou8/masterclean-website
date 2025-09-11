@@ -87,7 +87,7 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
   const values = t.about.values
 
   const stats = [
-    { number: "500+", label: t.about.experience },
+    { number: "460+", label: t.about.experience },
     { number: "10+", label: t.about.experience },
     { number: "24/7", label: "Service Beschikbaar" },
     { number: "100%", label: t.about.features.quality.title },
@@ -125,11 +125,11 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">{t.about.description}</p>
               <div className="flex items-center space-x-8 mb-8">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">10+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-blue-600">10+</div>
                   <div className="text-gray-600">{t.about.experience}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-orange-500">500+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-orange-500">100%</div>
                   <div className="text-gray-600">{t.about.features.quality.title}</div>
                 </div>
               </div>
@@ -161,8 +161,8 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {stats.map((stat, index) => (
               <div key={index} className="space-y-2">
-                <div className="text-4xl font-bold text-blue-600">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-3xl sm:text-4xl font-bold text-blue-600">{stat.number}</div>
+                <div className="text-sm sm:text-base text-gray-600">{stat.label}</div>
               </div>
             ))}
           </div>
