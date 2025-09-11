@@ -33,7 +33,7 @@ const Services = memo(function Services({ translations, lang = "nl" }: ServicesP
       title: translations.services.hotel?.title || "Hotelschoonmaak",
       description: translations.services.hotel?.description || "Professionele schoonmaak voor hotels en accommodaties",
       features: translations.services.hotel?.features || ["Kamerreiniging", "Sanitair desinfectie", "Linnenservice"],
-      image: "/placeholder.jpg",
+      image: "/hotel-cleaning.jpg",
     },
     {
       icon: Sparkles,

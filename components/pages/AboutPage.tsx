@@ -104,7 +104,7 @@ export default function AboutPage({ searchParams }: AboutPageProps) {
       name: "Jan Pietersen",
       role: "Teamleider Kantoorschoonmaak",
       experience: `8 ${t.contact.team.experience}`,
-      image: "/team-jan.png",
+      image: "/team-jan-profile.jpg",
     },
     {
       name: "Sophie de Vries",

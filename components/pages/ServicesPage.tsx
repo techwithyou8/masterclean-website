@@ -55,7 +55,7 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
     image: [
       "/vacation-home-cleaning.png",
       "/office-cleaning-service.png",
-      "/placeholder.jpg",
+      "/hotel-cleaning.jpg",
       "/residential-cleaning-service.png"
     ][idx],
     title: t.services[serviceKeys[idx] as "vacation" | "office" | "hotel" | "general"].title,
