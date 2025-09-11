@@ -120,8 +120,16 @@ async function sendEmailDirectly({ name, email, phone, message, files }: {
     }
 
     // 2) SMTP via Nodemailer (Hostinger or other)
-    if (process.env.EMAIL_PASS || process.env.EMAIL_USER) {
-      console.log("Attempting to send email via SMTP...")
+    const hasSMTPCreds = !!process.env.EMAIL_HOST && !!process.env.EMAIL_PORT && !!process.env.EMAIL_USER && !!process.env.EMAIL_PASS
+    if (hasSMTPCreds) {
+      console.log("Attempting to send email via SMTP...",
+        {
+          SMTP_HOST_PRESENT: !!process.env.EMAIL_HOST,
+          SMTP_PORT_PRESENT: !!process.env.EMAIL_PORT,
+          SMTP_USER_PRESENT: !!process.env.EMAIL_USER,
+          SMTP_PASS_PRESENT: !!process.env.EMAIL_PASS,
+        }
+      )
 
       const transporter = createSMTPTransporter()
 
@@ -164,7 +172,13 @@ async function sendEmailDirectly({ name, email, phone, message, files }: {
     }
 
     // 3) No email service configured: return a helpful error
-    console.warn("No email service configured (RESEND_API_KEY or EMAIL_USER/EMAIL_PASS)")
+    console.warn("No email service configured (RESEND_API_KEY or SMTP creds)", {
+      hasResendValid,
+      SMTP_HOST_PRESENT: !!process.env.EMAIL_HOST,
+      SMTP_PORT_PRESENT: !!process.env.EMAIL_PORT,
+      SMTP_USER_PRESENT: !!process.env.EMAIL_USER,
+      SMTP_PASS_PRESENT: !!process.env.EMAIL_PASS,
+    })
     return {
       success: false,
       error: "E-mailservice is niet geconfigureerd. Neem contact op via telefoon of WhatsApp.",
@@ -238,9 +252,17 @@ export async function submitAppointmentForm(formData: FormData) {
   // If Resend is not configured (or invalid key), try SMTP; otherwise report configuration error
   const hasResendValid = typeof process.env.RESEND_API_KEY === 'string' && process.env.RESEND_API_KEY.startsWith('re_')
   if (!hasResendValid) {
-    if (process.env.EMAIL_PASS || process.env.EMAIL_USER) {
+    const hasSMTPCreds = !!process.env.EMAIL_HOST && !!process.env.EMAIL_PORT && !!process.env.EMAIL_USER && !!process.env.EMAIL_PASS
+    if (hasSMTPCreds) {
       try {
-        console.log("Attempting to send appointment email via SMTP...")
+        console.log("Attempting to send appointment email via SMTP...",
+          {
+            SMTP_HOST_PRESENT: !!process.env.EMAIL_HOST,
+            SMTP_PORT_PRESENT: !!process.env.EMAIL_PORT,
+            SMTP_USER_PRESENT: !!process.env.EMAIL_USER,
+            SMTP_PASS_PRESENT: !!process.env.EMAIL_PASS,
+          }
+        )
 
         const transporter = createSMTPTransporter()
 
