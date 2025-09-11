@@ -313,6 +313,7 @@ export default function ContactPage({ searchParams }: ContactPageProps) {
                     <option value="">{t.contact.appointmentForm.serviceTypePlaceholder}</option>
                     <option value="vakantiehuizen">{t.contact.appointmentForm.services.vacation}</option>
                     <option value="kantoor">{t.contact.appointmentForm.services.office}</option>
+                    <option value="hotel">{t.contact.appointmentForm.services.hotel}</option>
                     <option value="woning">{t.contact.appointmentForm.services.residential}</option>
                     <option value="verhuizing">{t.contact.appointmentForm.services.moving}</option>
                     <option value="eenmalig">{t.contact.appointmentForm.services.oneTime}</option>

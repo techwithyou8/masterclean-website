@@ -93,8 +93,9 @@ async function sendEmailDirectly({ name, email, phone, message, files }: {
   files: any[]
 }) {
   try {
-    // 1) Resend (if configured)
-    if (resend) {
+    // 1) Resend (only if a valid key is present)
+    const hasResendValid = typeof process.env.RESEND_API_KEY === 'string' && process.env.RESEND_API_KEY.startsWith('re_')
+    if (hasResendValid && resend) {
       console.log("Attempting to send email via Resend...")
 
       const attachments = files.map((file) => ({
@@ -234,8 +235,9 @@ export async function submitAppointmentForm(formData: FormData) {
     }
   }
 
-  // If Resend is not configured, try SMTP; otherwise report configuration error
-  if (!resend) {
+  // If Resend is not configured (or invalid key), try SMTP; otherwise report configuration error
+  const hasResendValid = typeof process.env.RESEND_API_KEY === 'string' && process.env.RESEND_API_KEY.startsWith('re_')
+  if (!hasResendValid) {
     if (process.env.EMAIL_PASS || process.env.EMAIL_USER) {
       try {
         console.log("Attempting to send appointment email via SMTP...")
@@ -327,6 +329,13 @@ export async function submitAppointmentForm(formData: FormData) {
   }
 
   try {
+    const hasResendValid = typeof process.env.RESEND_API_KEY === 'string' && process.env.RESEND_API_KEY.startsWith('re_')
+    if (!hasResendValid || !resend) {
+      return {
+        success: false,
+        error: "E-mailservice is niet geconfigureerd voor Resend. Gebruik SMTP of configureer RESEND_API_KEY.",
+      }
+    }
     console.log("Attempting to send appointment email via Resend...")
 
     // Format date and time for display
