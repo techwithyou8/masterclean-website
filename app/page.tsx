@@ -21,12 +21,12 @@ const Contact = dynamic(() => import("@/components/Contact"), {
 export const metadata: Metadata = {
   title: "MasterClean - Professionele Schoonmaak in Zeeland & Noord-Holland",
   description:
-    "Professionele schoonmaak voor vakantiehuizen, kantoren en woningen in Zeeland & Noord-Holland. Neem direct contact op!",
+    "Professionele schoonmaak voor vakantiehuizen, hotels, kantoren en woningen in Zeeland & Noord-Holland. Neem direct contact op!",
   keywords:
-    "schoonmaakbedrijf Zeeland, schoonmaakbedrijf Noord-Holland, vakantiehuizen schoonmaken, kantoor schoonmaak, professionele schoonmaak",
+    "schoonmaakbedrijf Zeeland, schoonmaakbedrijf Noord-Holland, hotels schoonmaak, vakantiehuizen schoonmaken, kantoor schoonmaak, professionele schoonmaak",
   openGraph: {
     title: "MasterClean - Professionele Schoonmaak in Zeeland & Noord-Holland",
-    description: "Professionele schoonmaak voor vakantiehuizen, kantoren en woningen",
+    description: "Professionele schoonmaak voor vakantiehuizen, hotels, kantoren en woningen",
     type: "website",
   },
 }

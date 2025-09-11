@@ -1,7 +1,7 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Home, Building, Sparkles, ArrowRight, CheckCircle, Clock, Users, Shield, Phone } from "lucide-react"
+import { Home, Building, Sparkles, ArrowRight, CheckCircle, Clock, Users, Shield, Phone, Bed } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { getTranslations } from "@/lib/translations"
@@ -48,17 +48,18 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
   const t = getTranslations(lang)
 
   // Map services and benefits from translations
-  const serviceKeys = ["vacation", "office", "general"] as const
+  const serviceKeys = ["vacation", "office", "hotel", "general"] as const
   const services = t.services.detailed.map((service, idx: number): ServiceItem => ({
     ...service,
-    icon: [Home, Building, Sparkles][idx],
+    icon: [Home, Building, Bed, Sparkles][idx],
     image: [
       "/vacation-home-cleaning.png",
       "/office-cleaning-service.png",
+      "/placeholder.jpg",
       "/residential-cleaning-service.png"
     ][idx],
-    title: t.services[serviceKeys[idx] as "vacation" | "office" | "general"].title,
-    description: t.services[serviceKeys[idx] as "vacation" | "office" | "general"].description,
+    title: t.services[serviceKeys[idx] as "vacation" | "office" | "hotel" | "general"].title,
+    description: t.services[serviceKeys[idx] as "vacation" | "office" | "hotel" | "general"].description,
     detailedFeatures: service.features,
   }))
   const benefits = t.services.benefits.map((benefit, idx: number): BenefitItem => ({
@@ -97,7 +98,7 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
             {services.map((service, index) => (
               <div
                 key={index}
-                id={index === 0 ? "vacation" : index === 1 ? "office" : "general"}
+                id={serviceKeys[index]}
                 className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
               >
                 {/* Image */}

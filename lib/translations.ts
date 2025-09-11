@@ -10,7 +10,7 @@ const translations = {
     hero: {
       title: "Professionele Schoonmaak in Zeeland & Noord-Holland",
       subtitle:
-        "MasterClean biedt betrouwbare en hoogwaardige schoonmaakdiensten voor vakantiehuizen, kantoren en woningen. Neem vandaag nog contact op voor een vrijblijvende offerte!",
+        "MasterClean biedt betrouwbare en hoogwaardige schoonmaakdiensten voor vakantiehuizen, hotels, kantoren en woningen. Neem vandaag nog contact op voor een vrijblijvende offerte!",
       cta: "Vraag Offerte Aan",
       phone: "+31 (0)85 0805636",
       stats: {
@@ -49,6 +49,11 @@ const translations = {
         description: "Dagelijkse en periodieke schoonmaak voor kantoren en bedrijfspanden",
         features: ["Dagelijkse schoonmaak", "Sanitaire voorzieningen", "Vloeronderhoud", "Ramen en glaswerk"],
       },
+      hotel: {
+        title: "Hotelschoonmaak",
+        description: "Professionele schoonmaak voor hotels en accommodaties",
+        features: ["Kamerreiniging", "Sanitair desinfectie", "Linnenservice", "Gemeenschappelijke ruimtes", "Flexibele planning"],
+      },
       general: {
         title: "Algemene Schoonmaakdiensten",
         description: "Complete schoonmaakdiensten voor woningen en bedrijven",
@@ -83,6 +88,16 @@ const translations = {
             "Keuken en pantry schoonmaak",
             "Vergaderruimtes prepareren",
             "Periodieke diepe reiniging",
+          ],
+        },
+        {
+          key: "hotel",
+          features: [
+            "Kamerreiniging",
+            "Sanitair en keuken desinfectie",
+            "Linnenservice",
+            "Lobby en gangen",
+            "Flexibele planning"
           ],
         },
         {
@@ -288,6 +303,7 @@ const translations = {
         services: {
           vacation: "Vakantiehuizen Schoonmaken",
           office: "Kantoorschoonmaak",
+          hotel: "Hotelschoonmaak",
           residential: "Woningschoonmaak",
           moving: "Verhuisschoonmaak",
           oneTime: "Eenmalige Schoonmaak",
@@ -310,6 +326,7 @@ const translations = {
         title: "Diensten",
         vacation: "Vakantiehuizen",
         office: "Kantoorschoonmaak",
+        hotel: "Hotel",
         general: "Algemene Schoonmaak",
       },
       contact: {
@@ -333,7 +350,7 @@ const translations = {
     hero: {
       title: "Professionelle Reinigungsdienste in Zeeland & Noord-Holland",
       subtitle:
-        "MasterClean bietet zuverlässige und hochwertige Reinigungsdienste für Ferienhäuser, Büros und Wohnungen. Kontaktieren Sie uns noch heute für ein unverbindliches Angebot!",
+        "MasterClean bietet zuverlässige und hochwertige Reinigungsdienste für Ferienhäuser, Hotels, Büros und Wohnungen. Kontaktieren Sie uns noch heute für ein unverbindliches Angebot!",
       cta: "Angebot Anfordern",
       phone: "+31 (0)85 0805636",
       stats: {
@@ -372,6 +389,11 @@ const translations = {
         description: "Tägliche und regelmäßige Reinigung für Büros und Geschäftsgebäude",
         features: ["Tägliche Reinigung", "Sanitäranlagen", "Bodenpflege", "Fenster und Glasarbeiten"],
       },
+      hotel: {
+        title: "Hotelreinigung",
+        description: "Professionelle Reinigung für Hotels und Unterkünfte",
+        features: ["Zimmerreinigung", "Sanitärdesinfektion", "Wäscheservice", "Gemeinschaftsbereiche", "Flexible Planung"],
+      },
       general: {
         title: "Allgemeine Reinigungsdienste",
         description: "Komplette Reinigungsdienste für Wohnungen und Unternehmen",
@@ -401,6 +423,16 @@ const translations = {
             "Küchen- und Pantryreinigung",
             "Konferenzräume vorbereiten",
             "Regelmäßige Tiefenreinigung",
+          ],
+        },
+        {
+          key: "hotel",
+          features: [
+            "Zimmerreinigung",
+            "Sanitär- und Küchen-Desinfektion",
+            "Wäscheservice",
+            "Lobby und Flure",
+            "Flexible Planung"
           ],
         },
         {

@@ -32,14 +32,14 @@ export default function Header({ translations, lang }: HeaderProps) {
           {/* Logo */}
           <Link href={`/?lang=${lang}`} className="flex items-center flex-shrink-0">
             <Image
-              src="/masterclean-logo-new.png"
+              src="/masterclean-logo-transparent.png"
               alt="MasterClean"
-              width={320}
-              height={80}
-              className="h-12 sm:h-16 w-auto object-contain"
+              width={240}
+              height={60}
+              className="h-10 sm:h-12 w-auto object-contain"
               priority
               quality={90}
-              sizes="(min-width: 1024px) 256px, (min-width: 640px) 224px, 192px"
+              sizes="(min-width: 1024px) 192px, (min-width: 640px) 160px, 140px"
             />
           </Link>
 

@@ -21,7 +21,7 @@ export default function Footer({ translations, lang }: FooterProps) {
             <div className="sm:col-span-2 lg:col-span-1 space-y-6">
               <div className="flex items-center">
                 <Image
-                  src="/masterclean-logo-new.png"
+                  src="/masterclean-logo-transparent.png"
                   alt="MasterClean"
                   width={280}
                   height={70}
@@ -82,6 +82,15 @@ export default function Footer({ translations, lang }: FooterProps) {
                   >
                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 group-hover:bg-blue-400"></span>
                     {translations.footer.services.general}
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href={`/services?lang=${lang}#hotel`} 
+                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3 group-hover:bg-blue-400"></span>
+                    {translations.footer.services.hotel}
                   </Link>
                 </li>
               </ul>

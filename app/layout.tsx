@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://mastercleanservice.nl'),
   title: "MasterClean - Professionele Schoonmaak in Zeeland & Noord-Holland",
-  description: "Professionele schoonmaak voor vakantiehuizen, kantoren en woningen in Zeeland & Noord-Holland",
+  description: "Professionele schoonmaak voor vakantiehuizen, hotels, kantoren en woningen in Zeeland & Noord-Holland",
     generator: 'v0.dev'
 }
 
@@ -28,7 +28,7 @@ export default function RootLayout({
         {/* Preload critical resources */}
         <link
           rel="preload"
-          href="/masterclean-logo-new.png"
+          href="/masterclean-logo-transparent.png"
           as="image"
           type="image/png"
         />

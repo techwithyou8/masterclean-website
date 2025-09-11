@@ -3,7 +3,7 @@
 import { memo } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Home, Building, Sparkles, ArrowRight, Phone } from "lucide-react"
+import { Home, Building, Sparkles, ArrowRight, Phone, Bed } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -27,6 +27,13 @@ const Services = memo(function Services({ translations, lang = "nl" }: ServicesP
       description: translations.services.office.description,
       features: translations.services.office.features,
       image: "/office-cleaning-service.png",
+    },
+    {
+      icon: Bed,
+      title: translations.services.hotel?.title || "Hotelschoonmaak",
+      description: translations.services.hotel?.description || "Professionele schoonmaak voor hotels en accommodaties",
+      features: translations.services.hotel?.features || ["Kamerreiniging", "Sanitair desinfectie", "Linnenservice"],
+      image: "/placeholder.jpg",
     },
     {
       icon: Sparkles,
