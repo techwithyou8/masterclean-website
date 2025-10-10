@@ -72,7 +72,7 @@ const Hero = memo(function Hero({ translations, lang }: HeroProps) {
 
           {/* Image */}
           <div className="relative order-first lg:order-last lg:flex lg:justify-end">
-            <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl w-full max-w-[640px] lg:max-w-[720px] xl:max-w-[820px] 2xl:max-w-[900px] lg:translate-x-4 xl:translate-x-8 2xl:translate-x-12">
+            <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl w-full max-w-[680px] lg:max-w-[780px] xl:max-w-[900px] 2xl:max-w-[1000px] lg:translate-x-8 xl:translate-x-16 2xl:translate-x-24">
               <Image
                 src="/cleaning-team-office.png"
                 alt="MasterClean professional cleaning services"
