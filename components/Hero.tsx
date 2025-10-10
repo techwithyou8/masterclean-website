@@ -18,7 +18,7 @@ const Hero = memo(function Hero({ translations, lang }: HeroProps) {
       <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px]" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center">
           {/* Content */}
           <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
             <div className="space-y-3 lg:space-y-4">
@@ -71,8 +71,8 @@ const Hero = memo(function Hero({ translations, lang }: HeroProps) {
           </div>
 
           {/* Image */}
-          <div className="relative order-first lg:order-last">
-            <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl">
+          <div className="relative order-first lg:order-last lg:flex lg:justify-end">
+            <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl w-full max-w-[640px] lg:max-w-[720px] xl:max-w-[820px] 2xl:max-w-[900px] lg:translate-x-4 xl:translate-x-8 2xl:translate-x-12">
               <Image
                 src="/cleaning-team-office.png"
                 alt="MasterClean professional cleaning services"
